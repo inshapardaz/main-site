@@ -10,7 +10,6 @@ const isServe = args.includes("--start");
 const config = {
     logLevel: "info",
     entryPoints: ["src/index.html"],
-    outdir: "dist",
     bundle: true,
     treeShaking: true,
     plugins: [
@@ -34,6 +33,7 @@ if (args.includes("--build")) {
     esbuild
         .build({
             ...config,
+            outdir: "dist",
             minify: true,
             sourcemap: false,
         })
@@ -47,6 +47,7 @@ if (isServe) {
     esbuild
         .context({
             ...config,
+            outdir: "build",
             minify: false,
             sourcemap: true,
             banner: {
@@ -57,8 +58,8 @@ if (isServe) {
             await ctx.watch(); // this is needed only if live reloading will be used
             await ctx.serve({
                 port: 4300,
-                servedir: "dist",
-                fallback: `dist/index.html`,
+                servedir: "build",
+                fallback: `build/index.html`,
                 onRequest: ({ remoteAddress, method, path, status, timeInMS }) => {
                     console.info(
                         remoteAddress,

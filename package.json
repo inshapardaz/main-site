@@ -2,7 +2,7 @@
     "name": "library",
     "version": "1.0.0",
     "scripts": {
-        "build": "node esbuild.config.js --build",
+        "build": "node esbuild.config.mjs --build",
         "start": "cross-env NODE_ENV=local node esbuild.config.mjs --start",
         "start:prod": "cross-env NODE_ENV=production node esbuild.config.mjs --start"
     },
