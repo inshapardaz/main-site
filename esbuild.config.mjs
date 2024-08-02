@@ -23,6 +23,8 @@ const config = {
         ".jpeg": "file",
         ".svg": "file",
         ".gif": "file",
+        ".woff": "file",
+        ".woff2": "file",
         ".js": "jsx",
     },
     assetNames: 'assets/[name]-[hash]',
