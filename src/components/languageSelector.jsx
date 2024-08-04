@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 //----------------------------------
 
 import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
+import IconButton from "@mui/joy/IconButton";
 
 // Icons
-import LanguageIcon from "@mui/icons-material/Language";
+import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 //----------------------------------
 const LanguageSelector = (props) => {
     const { ...other } = props;
@@ -20,8 +21,11 @@ const LanguageSelector = (props) => {
 
     return (
         <Dropdown>
-            <MenuButton {...other}>
-                <LanguageIcon />
+            <MenuButton
+                slots={{ root: IconButton }}
+                slotProps={{ root: { ...other } }}
+            >
+                <LanguageRoundedIcon />
             </MenuButton>
             <Menu>
                 <MenuItem

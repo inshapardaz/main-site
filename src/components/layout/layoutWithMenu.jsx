@@ -1,42 +1,61 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import i18n from "/src/i18n";
 import { useTranslation } from "react-i18next";
 
+// Joy Imports
+import { Box } from "@mui/joy";
+
 // Local imports
-import AuthService from "/src/services/auth.service";
-import { AccountContext } from "/src/contexts";
+import Header from "/src/components/layout/header";
+
+// Local import
+import Layout from "./Layout";
+import Navigation from "./navigation";
+
 //----------------------------------------------
 
 const LayoutWithMenu = () => {
-    const { t } = useTranslation();
-    const { authenticated, setAuthenticated } = useContext(AccountContext);
-
-    const loginButton = authenticated ? (
-        <button
-            onClick={() => {
-                AuthService.Logout();
-                setAuthenticated(true);
-            }}
-        >
-            {" "}
-            Logout
-        </button>
-    ) : (
-        <Link to="/account/login">Login</Link>
-    );
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
         <>
-            <div className="header">
-                <h1>{t("app")}</h1>
-                <button onClick={() => i18n.changeLanguage("en")}>en</button>
-                <button onClick={() => i18n.changeLanguage("ur")}>ur</button>
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link> |{loginButton}
-            </div>
-
-            <Outlet />
+            {drawerOpen && (
+                <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
+                    <Navigation />
+                </Layout.SideDrawer>
+            )}
+            <Layout.Root
+                sx={{
+                    gridTemplateColumns: {
+                        xs: "1fr",
+                        sm: "minmax(64px, 200px) minmax(450px, 1fr)",
+                        md: "minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)",
+                    },
+                    ...(drawerOpen && {
+                        height: "100vh",
+                        overflow: "hidden",
+                    }),
+                }}
+            >
+                <Layout.Header>
+                    <Header />
+                </Layout.Header>
+                <Layout.SideNav>
+                    <Navigation />
+                </Layout.SideNav>
+                <Layout.Main>
+                    <Box
+                        sx={{
+                            display: "grid",
+                            gridTemplateColumns:
+                                "repeat(auto-fit, minmax(240px, 1fr))",
+                            gap: 2,
+                        }}
+                    >
+                        <Outlet />
+                    </Box>
+                </Layout.Main>
+            </Layout.Root>
         </>
     );
 };

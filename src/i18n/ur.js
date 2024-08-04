@@ -21,6 +21,10 @@ const ur = {
     },
     registerPage: {
         title: "سائن اپ"
+    },
+    actions: {
+        login: "داخل ہوں",
+        logout: "اخراج"
     }
 }
 

@@ -21,6 +21,10 @@ const en = {
     },
     registerPage: {
         title: "Sign up!"
+    },
+    actions: {
+        login: "Sign In",
+        logout: "Sign out"
     }
 }
 

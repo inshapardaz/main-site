@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 
 //----------------------------------------------
 import App from "./app";
-
+import "./i18n";
 //----------------------------------------------
 import "@fontsource/inter";
 import "./index.scss";
