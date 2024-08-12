@@ -1,31 +1,44 @@
 const en = {
     app: "Nawishta",
+    header: {
+        help: "Help",
+        settings: "Settings",
+        welcomeGuest: "Welcome Guest",
+        links: {
+            libraries: "Libraries",
+            dictionaries: "Dictionaries",
+            fonts: "Fonts",
+            tools: "Tools",
+        },
+        changePassword: "Change Password",
+    },
     loginPage: {
         title: "Sign In",
         subTitle: "New here؟",
         email: {
-            label: "Email"
+            label: "Email",
         },
         password: {
-            label: "Password"
+            label: "Password",
         },
         actions: {
             signIn: {
-                label: "Sign in"
-            }
-        }
+                label: "Sign in",
+            },
+        },
     },
     forgotPasswordPage: {
         title: "Forgot Password?",
-        subTitle: "Provide you email and you will receive password recovery instructions."
+        subTitle:
+            "Provide you email and you will receive password recovery instructions.",
     },
     registerPage: {
-        title: "Sign up!"
+        title: "Sign up!",
     },
     actions: {
         login: "Sign In",
-        logout: "Sign out"
-    }
-}
+        logout: "Sign out",
+    },
+};
 
 export default en;

@@ -15,6 +15,7 @@ const LanguageSelector = (props) => {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
         document.body.dir = i18n.dir();
+        window.localStorage.i18nextLng = lng;
     };
 
     console.dir(i18n);

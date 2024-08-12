@@ -19,14 +19,17 @@ import Drawer from "@mui/joy/Drawer";
 import ModalClose from "@mui/joy/ModalClose";
 import DialogTitle from "@mui/joy/DialogTitle";
 
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import BookRoundedIcon from "@mui/icons-material/BookRounded";
+import PersonIcon from '@mui/icons-material/Person';
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import BookIcon from '@mui/icons-material/Book';
+import FontDownloadIcon from '@mui/icons-material/FontDownload';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import PasswordIcon from '@mui/icons-material/Password';
 // Local imports
 
 import Navigation from "./navigation";
@@ -46,6 +49,24 @@ const Header = () => {
         React.useContext(AccountContext);
     const user = getUser();
 
+    const links = [{
+        text: t('header.links.libraries'),
+        to: 'https://libariries.nawishta.co.uk',
+        icon: <AccountBalanceIcon />
+    }, {
+        text: t('header.links.dictionaries'),
+        to: 'https://dictionary.nawishta.co.uk',
+        icon: <BookIcon />
+    }, {
+        text: t('header.links.fonts'),
+        to: 'https://fonts.nawishta.co.uk',
+        icon: <FontDownloadIcon />
+    }, {
+        text: t('header.links.tools'),
+        to: 'https://tools.nawishta.co.uk',
+        icon: <HomeRepairServiceIcon />
+    }];
+
     const loginButton = authenticated ? (
         <MenuItem
             onClick={() => {
@@ -62,6 +83,53 @@ const Header = () => {
             {t("actions.login")}
         </MenuItem>
     );
+
+    const userAvatar = () => {
+        if (authenticated) {
+            return (<Avatar alt={user.name} sx={{ borderRadius: "50%" }}>
+                {user.name.substring(0, 2).toUpperCase()}
+            </Avatar>);
+        }
+
+        return (<Avatar sx={{ borderRadius: "50%" }}>
+            <PersonIcon />
+        </Avatar>);
+    }
+
+    const userInfo = () => {
+        if (authenticated) {
+            return (<>
+                {userAvatar()}
+                <Box sx={{ ml: 1.5 }}>
+                    <Typography
+                        level="title-sm"
+                        textColor="text.primary"
+                    >
+                        {user.name}
+                    </Typography>
+                    <Typography
+                        level="body-xs"
+                        textColor="text.tertiary"
+                    >
+                        {user?.email}
+                    </Typography>
+                </Box></>);
+        }
+
+        return (<>
+            {userAvatar()}
+            <Box sx={{ ml: 1.5 }}>
+                <Typography
+                    level="title-sm"
+                    textColor="text.primary"
+                >
+                    {t('header.welcomeGuest')}
+                </Typography>
+            </Box></>
+        );
+    }
+
+
     return (
         <Box
             sx={{
@@ -70,6 +138,12 @@ const Header = () => {
                 justifyContent: "space-between",
             }}
         >
+            <Box>
+                <span className="header__logo">
+                    <i className="header__logoImg" />
+                    {t('app')}
+                </span>
+            </Box>
             <Stack
                 direction="row"
                 justifyContent="center"
@@ -77,37 +151,20 @@ const Header = () => {
                 spacing={1}
                 sx={{ display: { xs: "none", sm: "flex" } }}
             >
-                <Button
-                    variant="plain"
-                    color="neutral"
-                    component="a"
-                    href="/joy-ui/getting-started/templates/email/"
-                    size="sm"
-                    sx={{ alignSelf: "center" }}
-                >
-                    Email
-                </Button>
-                <Button
-                    variant="plain"
-                    color="neutral"
-                    component="a"
-                    href="/joy-ui/getting-started/templates/team/"
-                    size="sm"
-                    sx={{ alignSelf: "center" }}
-                >
-                    Team
-                </Button>
-                <Button
-                    variant="plain"
-                    color="neutral"
-                    aria-pressed="true"
-                    component="a"
-                    href="/joy-ui/getting-started/templates/files/"
-                    size="sm"
-                    sx={{ alignSelf: "center" }}
-                >
-                    Files
-                </Button>
+                {links.map(l =>
+                    <Button
+                        key={l.text}
+                        variant="plain"
+                        color="neutral"
+                        component="a"
+                        href={l.to}
+                        size="sm"
+                        sx={{ alignSelf: "center" }}
+                        startDecorator={l.icon}
+                    >
+                        {l.text}
+                    </Button>
+                )}
             </Stack>
             <Box sx={{ display: { xs: "inline-flex", sm: "none" } }}>
                 <IconButton
@@ -137,53 +194,6 @@ const Header = () => {
                     alignItems: "center",
                 }}
             >
-                <Input
-                    size="sm"
-                    variant="outlined"
-                    placeholder="Search anything…"
-                    startDecorator={<SearchRoundedIcon color="primary" />}
-                    endDecorator={
-                        <IconButton
-                            variant="outlined"
-                            color="neutral"
-                            sx={{ bgcolor: "background.level1" }}
-                        >
-                            <Typography level="title-sm" textColor="text.icon">
-                                ⌘ K
-                            </Typography>
-                        </IconButton>
-                    }
-                    sx={{
-                        alignSelf: "center",
-                        display: {
-                            xs: "none",
-                            sm: "flex",
-                        },
-                    }}
-                />
-                <IconButton
-                    size="sm"
-                    variant="outlined"
-                    color="neutral"
-                    sx={{
-                        display: { xs: "inline-flex", sm: "none" },
-                        alignSelf: "center",
-                    }}
-                >
-                    <SearchRoundedIcon />
-                </IconButton>
-                <Tooltip title="Joy UI overview" variant="outlined">
-                    <IconButton
-                        size="sm"
-                        variant="plain"
-                        color="neutral"
-                        component="a"
-                        href="/blog/first-look-at-joy/"
-                        sx={{ alignSelf: "center" }}
-                    >
-                        <BookRoundedIcon />
-                    </IconButton>
-                </Tooltip>
                 <LanguageSelector
                     variant="outlined"
                     color="neutral"
@@ -203,9 +213,7 @@ const Header = () => {
                             borderRadius: "9999999px",
                         }}
                     >
-                        <Avatar alt={user.name} sx={{ borderRadius: "50%" }}>
-                            {user.name.substring(0, 2).toUpperCase()}
-                        </Avatar>
+                        {userAvatar()}
                     </MenuButton>
                     <Menu
                         placement="bottom-end"
@@ -224,37 +232,24 @@ const Header = () => {
                                     alignItems: "center",
                                 }}
                             >
-                                <Avatar
-                                    alt={user.name}
-                                    sx={{ borderRadius: "50%" }}
-                                >
-                                    {user.name.substring(0, 2).toUpperCase()}
-                                </Avatar>
-                                <Box sx={{ ml: 1.5 }}>
-                                    <Typography
-                                        level="title-sm"
-                                        textColor="text.primary"
-                                    >
-                                        {user.name}
-                                    </Typography>
-                                    <Typography
-                                        level="body-xs"
-                                        textColor="text.tertiary"
-                                    >
-                                        {user?.email}
-                                    </Typography>
-                                </Box>
+                                {userInfo()}
                             </Box>
                         </MenuItem>
                         <ListDivider />
                         <MenuItem>
                             <HelpRoundedIcon />
-                            Help
+                            {t('header.help')}
                         </MenuItem>
                         <MenuItem>
                             <SettingsRoundedIcon />
-                            Settings
+                            {t('header.settings')}
                         </MenuItem>
+                        {authenticated &&
+                            <MenuItem>
+                                <PasswordIcon />
+                                {t('header.changePassword')}
+                            </MenuItem>
+                        }
                         <ListDivider />
                         {loginButton}
                     </Menu>

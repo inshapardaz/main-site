@@ -9,7 +9,7 @@ import { Box } from "@mui/joy";
 import Header from "/src/components/layout/header";
 
 // Local import
-import Layout from "./Layout";
+import Layout from "./layout";
 import Navigation from "./navigation";
 
 //----------------------------------------------
@@ -40,9 +40,6 @@ const LayoutWithMenu = () => {
                 <Layout.Header>
                     <Header />
                 </Layout.Header>
-                <Layout.SideNav>
-                    <Navigation />
-                </Layout.SideNav>
                 <Layout.Main>
                     <Box
                         sx={{

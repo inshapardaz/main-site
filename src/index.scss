@@ -3,6 +3,22 @@
     color: brown;
 }
 .header {
-    background-image: url('./assets/header_bkg.jpg');
+    background-image: url("./assets/header_bkg.jpg");
     background-repeat: repeat;
+
+    &__logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+    &__logoImg {
+        background-image: url("./assets/logo.png");
+        background-repeat: no-repeat;
+        background-size: 32px;
+        background-position: left center;
+        height: 32px;
+        width: 32px;
+        display: inline-block;
+    }
 }
