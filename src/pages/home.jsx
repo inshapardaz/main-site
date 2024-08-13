@@ -9,10 +9,12 @@ import Typography from '@mui/joy/Typography';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 import TwoSidedLayout from '/src/components/layout/twoSidedLayout';
+import { AccountContext } from "/src/contexts";
 //----------------------------------------------
 
 const Home = () => {
     const { t } = useTranslation();
+    const { authenticated } = React.useContext(AccountContext);
 
     return (
         <Box
@@ -29,25 +31,26 @@ const Home = () => {
         >
             <TwoSidedLayout>
                 <Typography color="primary" fontSize="lg" fontWeight="lg">
-                    The power to do more
+                    {t('home.subHeading')}
                 </Typography>
                 <Typography
                     level="h1"
                     fontWeight="xl"
                     fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
                 >
-                    A large headlinerer about our product features & services
+                    {t('home.heading')}
                 </Typography>
                 <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-                    A descriptive secondary text placeholder. Use it to explain your business
-                    offer better.
+                    {t('home.description')}
                 </Typography>
-                <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
-                    Get Started
+                <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}
+                    onClick={() => window.location.href = "https://libraries.nawishta.co.uk"}>
+                    {t('home.gettingStarted')}
                 </Button>
-                <Typography>
-                    Already a member? <Link fontWeight="lg">Sign in</Link>
-                </Typography>
+                {!authenticated &&
+                    <Typography>
+                        {t('registerPage.alreadyAMember')} <Link fontWeight="lg" href="/account/login">{t('loginPage.title')}</Link>
+                    </Typography>}
                 <Typography
                     level="body-xs"
                     sx={{

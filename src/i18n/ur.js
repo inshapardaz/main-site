@@ -12,6 +12,12 @@ const ur = {
         },
         changePassword: "پاسورڈ کی تبدیلی",
     },
+    home: {
+        subHeading: "آج کچھ پڑھئے",
+        heading: "نوشتہ",
+        description: "اردو کی کتابیں اور بہت کچھ ، بہترین انداز میں",
+        gettingStarted: "شروع کیجئے",
+    },
     loginPage: {
         title: "داخل ہوں",
         subTitle: "یہاں نئے ہیں?",
@@ -34,6 +40,7 @@ const ur = {
     },
     registerPage: {
         title: "سائن اپ",
+        alreadyAMember: "پہلے سے ممبر ہیں؟",
     },
     actions: {
         login: "داخل ہوں",

@@ -12,6 +12,13 @@ const en = {
         },
         changePassword: "Change Password",
     },
+    home: {
+        subHeading: "The power to do more",
+        heading: "A large headliner about our product features & services",
+        description:
+            "A descriptive secondary text placeholder. Use it to explain your business offer better.",
+        gettingStarted: "Get Started",
+    },
     loginPage: {
         title: "Sign In",
         subTitle: "New here؟",
@@ -34,6 +41,7 @@ const en = {
     },
     registerPage: {
         title: "Sign up!",
+        alreadyAMember: "Already a member?",
     },
     actions: {
         login: "Sign In",

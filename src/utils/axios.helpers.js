@@ -2,19 +2,22 @@ import axios from "axios";
 import { Mutex } from "async-mutex";
 
 // Local import
-import { getUser, setUser, clearUser } from "/src/domain/repository/userRepository";
+import {
+    getUser,
+    setUser,
+    clearUser,
+} from "/src/domain/repository/userRepository";
 import UrlRepository from "/src/domain/repository/urlRepository";
-import * as env from "env";
+import { API_URL } from "/src/config";
 
 // ----------------------------------------------
 
 export const axiosPublic = axios.create({
-    baseURL: env.API_URL,
+    baseURL: API_URL,
 });
 export const axiosPrivate = axios.create({
-    baseURL: env.API_URL,
+    baseURL: API_URL,
 });
-
 
 const mutex = new Mutex();
 
@@ -43,8 +46,9 @@ axiosPrivate.interceptors.request.use(
                 }
 
                 if (config?.headers) {
-                    config.headers["authorization"] = `Bearer ${getUser()?.accessToken
-                        }`;
+                    config.headers["authorization"] = `Bearer ${
+                        getUser()?.accessToken
+                    }`;
                 }
             }
         } finally {
