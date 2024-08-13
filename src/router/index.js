@@ -4,7 +4,11 @@ import Home from "/src/pages/home";
 import About from "/src/pages/about";
 import ErrorPage from "/src/pages/error-page";
 import LayoutWithMenu from "/src/components/layout/layoutWithMenu";
+import EmptyPageLayout from "/src/components/layout/emptyPageLayout";
 
+import LoginPage from "/src/pages/login";
+import RegisterPage from "/src/pages/register";
+import ForgotPasswordPage from "/src/pages/forgotPassword";
 
 //------------------------------------------------------------------
 const router = createBrowserRouter([{
@@ -17,6 +21,18 @@ const router = createBrowserRouter([{
     {
         path: "about",
         element: <About />,
+    }]
+}, {
+    element: <EmptyPageLayout />,
+    children: [{
+        path: "/account/login",
+        element: <LoginPage />,
+    }, {
+        path: "/account/forgot-password",
+        element: <ForgotPasswordPage />,
+    }, {
+        path: "/account/register",
+        element: <RegisterPage />,
     }]
 }]);
 

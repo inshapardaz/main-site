@@ -14,6 +14,7 @@ i18n.use(initReactI18next).init({
     interpolation: {
         escapeValue: false,
     },
+    supportedLngs: ['en', 'ur'],
     resources: {
         en: {
             translation: en,
