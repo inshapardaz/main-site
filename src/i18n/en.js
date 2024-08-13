@@ -13,11 +13,11 @@ const en = {
         changePassword: "Change Password",
     },
     home: {
-        subHeading: "The power to do more",
-        heading: "A large headliner about our product features & services",
+        subHeading: "Read something today",
+        heading: "Nawishta",
         description:
-            "A descriptive secondary text placeholder. Use it to explain your business offer better.",
-        gettingStarted: "Get Started",
+            "A comprehensive collection of urdu text and tools, presented brilliantly.",
+        gettingStarted: "Start reading...",
     },
     loginPage: {
         title: "Sign In",
