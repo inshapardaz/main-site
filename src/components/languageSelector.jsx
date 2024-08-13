@@ -18,8 +18,6 @@ const LanguageSelector = (props) => {
         window.localStorage.i18nextLng = lng;
     };
 
-    console.dir(i18n);
-
     return (
         <Dropdown>
             <MenuButton
