@@ -51,7 +51,7 @@ const Header = () => {
 
     const links = [{
         text: t('header.links.libraries'),
-        to: 'https://libariries.nawishta.co.uk',
+        to: 'https://libraries.nawishta.co.uk/',
         icon: <AccountBalanceIcon />
     }, {
         text: t('header.links.dictionaries'),

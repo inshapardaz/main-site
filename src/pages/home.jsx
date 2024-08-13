@@ -44,7 +44,7 @@ const Home = () => {
                     {t('home.description')}
                 </Typography>
                 <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}
-                    onClick={() => window.location.href = "https://libraries.nawishta.co.uk"}>
+                    onClick={() => window.location.href = "https://libraries.nawishta.co.uk/"}>
                     {t('home.gettingStarted')}
                 </Button>
                 {!authenticated &&
