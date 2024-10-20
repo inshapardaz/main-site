@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 
 // ui library 
 import { Overlay, Container, Title, Button, Text } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
 
 // Local imports
 import classes from './homePage.module.css';
+import { Link } from 'react-router-dom';
 
 // ------------------------------------------------------------------
 
@@ -26,11 +26,7 @@ const HomePage = () => {
           {t('slogan')}
         </Text>
 
-        <Button variant="gradient" size="xl" radius="xl" className={classes.control} onClick={() => {
-          notifications.show({
-            message: 'test'
-          })
-        }}>
+        <Button variant="gradient" size="xl" radius="xl" className={classes.control} component={Link} to="https://libraries.nawishta.co.uk/">
           {t('actions.seeMore')}
         </Button>
       </Container>
