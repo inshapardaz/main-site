@@ -2,15 +2,9 @@ import axios from "axios";
 import { Mutex } from "async-mutex";
 
 // Local import
-import {
-    getUser,
-    setUser,
-    clearUser,
-} from "/src/domain/repository/userRepository";
-import UrlRepository from "/src/domain/repository/urlRepository";
-import { API_URL } from "/src/config";
-
-// ----------------------------------------------
+import { API_URL } from "@/config";
+import { getUser, setUser, clearUser } from "@/domain/userRepository";
+//------------------------------------------
 
 export const axiosPublic = axios.create({
     baseURL: API_URL,
@@ -33,22 +27,21 @@ axiosPrivate.interceptors.request.use(
                 if (new Date(user.accessTokenExpiry) < currentDate.getTime()) {
                     try {
                         const response = await axiosPublic.post(
-                            UrlRepository.Auth.TokenRefresh,
+                            "/accounts/refresh-token",
                             {
                                 refreshToken: getUser().refreshToken,
                             }
                         );
                         setUser(response.data);
-                    } catch (e) {
+                    } catch {
                         clearUser();
-                        window.location.href = UrlRepository.Ui.Login;
+                        window.location.href = "/account/login";
                     }
                 }
 
                 if (config?.headers) {
-                    config.headers["authorization"] = `Bearer ${
-                        getUser()?.accessToken
-                    }`;
+                    config.headers["authorization"] = `Bearer ${getUser()?.accessToken
+                        }`;
                 }
             }
         } finally {

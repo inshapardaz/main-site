@@ -1,18 +1,17 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux';
 
-//----------------------------------------------
-import App from "./app";
-import "./i18n";
-//----------------------------------------------
-import "@fontsource/inter";
-import "./index.scss";
-//----------------------------------------------
+import { store } from "@/store";
+import App from '@/App.jsx'
+import '@/i18n';
 
-const root = createRoot(document.getElementById("root"));
+//---------------------------
 
-root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+createRoot(document.getElementById('root')).render(
+    <StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </StrictMode>
+)

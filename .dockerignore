@@ -1,2 +1,5 @@
+.github
+.parcel-cache
 node_modules
-.env.local
+npm-debug.log
+.editorconfig
