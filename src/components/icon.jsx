@@ -8,6 +8,7 @@ import BooksSvg from '@/assets/icons/books.svg';
 import BrandInstagramSvg from '@/assets/icons/brand-instagram.svg';
 import BrandTwitterSvg from '@/assets/icons/brand-twitter.svg';
 import BrandYoutubeSvg from '@/assets/icons/brand-youtube.svg';
+import BuildingArchSvg from '@/assets/icons/building-arch.svg';
 import CategorySvg from '@/assets/icons/category.svg';
 import ChevronDownSvg from '@/assets/icons/chevron-down.svg';
 import ChevronUpSvg from '@/assets/icons/chevron-up.svg';
@@ -70,6 +71,7 @@ export const IconFingerprint = (props) => (<Icon src={FingerprintSvg} {...props}
 export const IconFont = (props) => (<Icon src={TypographySvg} {...props} />)
 export const IconHome = (props) => (<Icon src={HomeSvg} {...props} />)
 export const IconInfoCircle = (props) => (<Icon src={InfoCircleSvg} {...props} />)
+export const IconLibrary = (props) => (<Icon src={BuildingArchSvg} {...props} />)
 export const IconLogout = (props) => (<Icon src={LogoutSvg} {...props} />)
 export const IconMoon = (props) => (<Icon src={MoonSvg} {...props} />)
 export const IconRefreshAlert = (props) => (<Icon src={RefreshAlertSvg} {...props} />)

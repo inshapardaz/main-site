@@ -22,7 +22,7 @@ import Logo from '../logo';
 import LanguageSwitch from './languageSwitch';
 import DarkModeToggle from './darkModeToggle';
 import Profile from './profile';
-import { IconBooks, IconDictionary, IconFont, IconHome, IconTools } from '../icon';
+import { IconLibrary, IconDictionary, IconFont, IconHome, IconTools } from '../icon';
 //----------------------------------------------
 
 const AppHeader = () => {
@@ -43,7 +43,7 @@ const AppHeader = () => {
               {t('header.home')}
             </Link>
             <Link to="https://libraries.nawishta.co.uk" className={classes.link}>
-              <IconBooks size={18} stroke={1.5} />
+              <IconLibrary size={18} stroke={1.5} />
               <Space w="md" />
               {t('header.libraries')}
             </Link>
@@ -91,7 +91,7 @@ const AppHeader = () => {
             {t('header.home')}
           </Link>
           <Link to="https://libraries.nawishta.co.uk" className={classes.link}>
-            <IconBooks size={18} stroke={1.5} />
+            <IconLibrary size={18} stroke={1.5} />
             <Space w="md" />
             {t('header.libraries')}
           </Link>
