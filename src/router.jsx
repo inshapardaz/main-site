@@ -19,6 +19,10 @@ const Router = () => {
                             path="/change-password"
                             element={<Pages.ChangePasswordPage />}
                         />
+                        <Route
+                            path="/profile"
+                            element={<Pages.ProfilePage />}
+                        />
                     </Route>
                 </Route>
                 <Route element={<LayoutWithFooter />}>

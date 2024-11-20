@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // 3rd part library
@@ -23,7 +23,7 @@ import {
 import { useForm } from '@mantine/form';
 
 // Local imports
-import { login, reset, getLoginStatus, getLoginError, isLoggedIn } from '@/store/slices/authSlice'
+import { login, reset, getLoginStatus, getLoginError } from '@/store/slices/authSlice'
 import classes from './loginPage.module.css';
 import { IconInfoCircle } from '@/components/icon';
 
@@ -32,20 +32,36 @@ const LoginPage = () => {
     const { t } = useTranslation();
 
     const dispatch = useDispatch()
-    const isUserLoggedIn = useSelector(isLoggedIn)
+    const user = useSelector(state => state.auth.user)
     const status = useSelector(getLoginStatus)
     const error = useSelector(getLoginError)
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const returnUrl = searchParams.get("returnUrl");
 
     useEffect(() => {
-        if (isUserLoggedIn) {
-            navigate('/')
+        if (user) {
+            if (returnUrl) {
+                window.location.href = returnUrl;
+            } else {
+                navigate('/')
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (status === "succeeded") {
+            if (returnUrl) {
+                window.location.href = returnUrl;
+            } else {
+                navigate('/')
+            }
         }
         else {
             dispatch(reset())
         }
 
-    }, [dispatch, isUserLoggedIn, navigate])
+    }, [dispatch, status, navigate, returnUrl])
 
     const form = useForm({
         mode: 'uncontrolled',

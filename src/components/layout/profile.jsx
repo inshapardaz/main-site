@@ -9,7 +9,7 @@ import { Avatar, Button, Group, Menu, Text, UnstyledButton } from "@mantine/core
 import { modals } from '@mantine/modals';
 
 // Local Imports
-import { logout, loggedInUser, isLoggedIn } from "@/store/slices/authSlice";
+import { logout } from "@/store/slices/authSlice";
 import classes from './profile.module.css';
 import { IconLogout, IconSettings, IconSwitchHorizontal, IconChevronDown } from "../icon";
 //-----------------------------------
@@ -18,8 +18,7 @@ const Profile = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isUserLoggedIn = useSelector(isLoggedIn);
-    const user = useSelector(loggedInUser)
+    const user = useSelector(state => state.auth.user)
     const [userMenuOpened, setUserMenuOpened] = useState(false);
 
     const logoutClicked = () => modals.openConfirmModal({
@@ -32,12 +31,12 @@ const Profile = () => {
         labels: { confirm: t('actions.yes'), cancel: t('actions.no') },
         onCancel: () => console.log('Cancel'),
         onConfirm: () => {
-            dispatch(logout())
+            dispatch(logout(user))
             navigate('/')
         },
     });
 
-    if (isUserLoggedIn) {
+    if (user) {
         return (<>
             <Menu
                 width={260}
@@ -66,6 +65,8 @@ const Profile = () => {
                 <Menu.Dropdown>
                     <Menu.Divider />
                     <Menu.Item
+                        component={Link}
+                        to='/profile'
                         leftSection={
                             <IconSettings size={16} stroke={1.5} />
                         }

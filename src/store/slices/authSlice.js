@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from 'js-cookie'
 
 // local Imports
-import { getUser, setUser, clearUser } from "@/domain/userRepository";
-import { axiosPublic } from '@/utils/axios.helpers';
+import { axiosPublic, axiosPrivate } from '@/utils/axios.helpers';
 // ----------------------------------------------------------
 
 const initialState = {
-    user: getUser(),
+    user: null,
     status: "idle", // idle || loading || succeeded || failed
     error: null,
     forgetPasswordStatus: "idle", // idle || loading || succeeded || failed
@@ -19,19 +19,40 @@ const initialState = {
 
 export const login = createAsyncThunk(
     "auth/login",
-    async ({ email, password }) => {
+    async ({ email, password }, { dispatch }) => {
         try {
             const response = await axiosPublic.post("/accounts/authenticate", {
                 email,
                 password,
             });
+            dispatch(loadUser())
             return response.data;
         } catch (e) {
-            console.log(e.message);
             return Promise.reject(e.message);
         }
     }
 );
+
+
+export const logout = createAsyncThunk(
+    "auth/logout",
+    async (user) => {
+        try {
+            const response = await axiosPublic.post("/accounts/revoke-token", {
+                token: user?.accessToken
+            });
+            return response.data;
+        } catch (e) {
+            console.error(e.message);
+            return Promise.reject(e.message);
+        }
+        finally {
+            Cookies.remove('token')
+            Cookies.remove('refreshToken')
+        }
+    }
+);
+
 
 export const verifyCode = createAsyncThunk(
     "auth/verify-code",
@@ -68,77 +89,72 @@ export const resetPassword = createAsyncThunk(
     }
 );
 
-// eslint-disable-next-line no-unused-vars
-export const init = createAsyncThunk("auth/init", async (_, { getState }) => {
-    const user = getUser();
-
-    let currentDate = new Date();
-    if (user?.refreshToken) {
-        if (
-            user?.accessToken &&
-            new Date(user.accessTokenExpiry) < currentDate.getTime()
-        ) {
-            try {
-                const response = await axiosPublic.post(
-                    "/accounts/refresh-token",
-                    {
-                        refreshToken: user.refreshToken,
-                    }
-                );
-
-                setUser(response.data);
-            } catch {
-                clearUser();
-                window.location.href = "/account/login";
-            }
+export const loadUser = createAsyncThunk(
+    "auth/user",
+    async () => {
+        try {
+            const response = await axiosPrivate.get("/accounts/user");
+            return response.data;
+        } catch (e) {
+            return Promise.reject(e);
         }
     }
-    return user;
+);
+
+
+export const init = createAsyncThunk("auth/init", async (_, { dispatch }) => {
+    if (Cookies.get('token')) {
+        console.debug('user logged in.')
+        dispatch(loadUser())
+    } else {
+        console.debug('user not logged in.')
+    }
 });
 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        logout: (state) => {
-            state.user = null;
-            clearUser();
-        },
         reset: (state) => {
             state.error = null;
             state.status = "idle";
+            state.loadUserStatus = "idle";
+            state.loadUserError = null;
         },
     },
     extraReducers(builder) {
         builder
+            .addCase(init.pending, (state) => {
+                state.tokenStatus = "loading";
+            })
+            .addCase(init.fulfilled, (state) => {
+                state.tokenStatus = "succeeded";
+            })
+            .addCase(init.rejected, (state, action) => {
+                state.tokenStatus = "failed";
+                state.tokenError = action.error.message;
+            })
             .addCase(login.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(login.fulfilled, (state, action) => {
+            .addCase(login.fulfilled, (state) => {
                 state.status = "succeeded";
-                // TODO: Perform transformation like link replacement
-                if (action.payload) {
-                    state.user = action.payload;
-                    setUser(action.payload);
-                }
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
             })
-            .addCase(init.pending, (state) => {
-                state.tokenStatus = "loading";
+            .addCase(logout.pending, (state) => {
+                state.logoutStatus = "loading";
             })
-            .addCase(init.fulfilled, (state, action) => {
-                state.tokenStatus = "succeeded";
-                if (action.payload) {
-                    state.user = action.payload;
-                    setUser(action.payload);
-                }
+            .addCase(logout.fulfilled, (state) => {
+                state.logoutStatus = "succeeded";
+                state.user = null;
             })
-            .addCase(init.rejected, (state, action) => {
-                state.tokenStatus = "failed";
-                state.tokenError = action.error.message;
+            .addCase(logout.rejected, (state, action) => {
+                state.logoutStatus = "failed";
+                state.logoutUser = action.error.message;
+                state.user = null;
             })
             .addCase(verifyCode.pending, (state) => {
                 state.tokenStatus = "loading";
@@ -159,11 +175,25 @@ export const authSlice = createSlice({
             .addCase(resetPassword.rejected, (state, action) => {
                 state.resetPasswordStatus = "failed";
                 state.resetPasswordError = action.error.message;
+            })
+            .addCase(loadUser.pending, (state) => {
+                state.loadUserStatus = "loading";
+                state.loadUserError = null;
+            })
+            .addCase(loadUser.fulfilled, (state, action) => {
+                state.loadUserStatus = "succeeded";
+                state.loadUserError = null;
+                if (action.payload) {
+                    state.user = action.payload;
+                }
+            })
+            .addCase(loadUser.rejected, (state, action) => {
+                state.loadUserStatus = "failed";
+                state.loadUserError = action.error.message;
             });
     },
 });
 
-export const loggedInUser = (state) => state?.auth?.user;
 export const isLoggedIn = (state) => state?.auth?.user != null;
 export const getLoginStatus = (state) => state?.auth?.status;
 export const getLoginError = (state) => state?.auth?.error;
@@ -171,5 +201,7 @@ export const getTokenStatus = (state) => state?.auth?.tokenStatus;
 export const getTokenError = (state) => state?.auth?.tokenError;
 export const getResetPasswordStatus = (state) => state?.auth?.resetPasswordStatus;
 export const getResetPasswordError = (state) => state?.auth?.resetPasswordError;
+export const getUserStatus = (state) => state?.auth?.loadUserStatus;
+export const getUserError = (state) => state?.auth?.loadUserError;
 
-export const { logout, reset } = authSlice.actions;
+export const { reset } = authSlice.actions;
