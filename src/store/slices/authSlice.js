@@ -33,7 +33,6 @@ export const login = createAsyncThunk(
     }
 );
 
-
 export const logout = createAsyncThunk(
     "auth/logout",
     async (user) => {
@@ -103,11 +102,8 @@ export const loadUser = createAsyncThunk(
 
 
 export const init = createAsyncThunk("auth/init", async (_, { dispatch }) => {
-    if (Cookies.get('token')) {
-        console.debug('user logged in.')
+    if (Cookies.get('refreshToken')) {
         dispatch(loadUser())
-    } else {
-        console.debug('user not logged in.')
     }
 });
 
@@ -194,7 +190,6 @@ export const authSlice = createSlice({
     },
 });
 
-export const isLoggedIn = (state) => state?.auth?.user != null;
 export const getLoginStatus = (state) => state?.auth?.status;
 export const getLoginError = (state) => state?.auth?.error;
 export const getTokenStatus = (state) => state?.auth?.tokenStatus;

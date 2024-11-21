@@ -38,6 +38,7 @@ const Router = () => {
                     />
                     <Route path="/account/verify" element={<VerifyAccount />} /> */}
                 </Route>
+                <Route path="/account/logout" element={<Pages.LogoutPage />} />
             </Routes>
         </BrowserRouter>
     );

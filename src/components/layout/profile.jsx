@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Ui Library Imports
 import cx from 'clsx';
@@ -9,14 +9,12 @@ import { Avatar, Button, Group, Menu, Text, UnstyledButton } from "@mantine/core
 import { modals } from '@mantine/modals';
 
 // Local Imports
-import { logout } from "@/store/slices/authSlice";
 import classes from './profile.module.css';
 import { IconLogout, IconSettings, IconSwitchHorizontal, IconChevronDown } from "../icon";
 //-----------------------------------
 
 const Profile = () => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state => state.auth.user)
     const [userMenuOpened, setUserMenuOpened] = useState(false);
@@ -31,8 +29,7 @@ const Profile = () => {
         labels: { confirm: t('actions.yes'), cancel: t('actions.no') },
         onCancel: () => console.log('Cancel'),
         onConfirm: () => {
-            dispatch(logout(user))
-            navigate('/')
+            navigate('/account/logout')
         },
     });
 
@@ -51,9 +48,9 @@ const Profile = () => {
                         className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
                     >
                         <Group gap={7}>
-                            <Avatar src={user.image} alt={user.name} radius="xl" size={20} />
+                            <Avatar src={user?.links?.image} alt={user?.name} radius="xl" size={20} />
                             <Text fw={500} size="sm" lh={1} mr={3}>
-                                {user.name}
+                                {user?.name}
                             </Text>
                             <IconChevronDown
                                 size={12}

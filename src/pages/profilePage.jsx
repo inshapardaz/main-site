@@ -18,6 +18,10 @@ const ProfilePage = () => {
     const { t } = useTranslation();
     const user = useSelector(state => state.auth.user);
 
+    if (!user) {
+        return null;
+    }
+
     const items = stats.map((stat) => (
         <div key={stat.label}>
             <Text ta="center" fz="lg" fw={500}>

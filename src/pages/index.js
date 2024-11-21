@@ -3,6 +3,7 @@ import LoginPage from "./loginPage";
 import RegisterPage from "./registerPage";
 import ChangePasswordPage from "./changePasswordPage";
 import ForgotPasswordPage from "./forgotPasswordPage";
+import LogoutPage from "./logoutPage";
 import ProfilePage from "./profilePage";
 
 
@@ -12,7 +13,8 @@ const Pages = {
     RegisterPage,
     ChangePasswordPage,
     ForgotPasswordPage,
-    ProfilePage
+    ProfilePage,
+    LogoutPage
 };
 
 export default Pages;
