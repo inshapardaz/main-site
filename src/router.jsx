@@ -16,7 +16,7 @@ const Router = () => {
                     <Route path="/" element={<Pages.HomePage />} />
                     <Route element={<SecurePage />}>
                         <Route
-                            path="/change-password"
+                            path="/account/change-password"
                             element={<Pages.ChangePasswordPage />}
                         />
                         <Route

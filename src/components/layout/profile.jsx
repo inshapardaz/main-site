@@ -75,7 +75,7 @@ const Profile = () => {
                             <IconSwitchHorizontal size={16} stroke={1.5} />
                         }
                         component={Link}
-                        to='/change-password'
+                        to='/accounts/change-password'
                     >
                         {t('changePassword.title')}
                     </Menu.Item>

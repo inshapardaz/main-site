@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 // 3rd part library
 import {
@@ -34,6 +34,8 @@ const ChangePasswordPage = () => {
     const [error, setError] = useState(false)
     const [busy, handlers] = useDisclosure(false);
     const [changePassword, { isLoading: isLoading }] = useChangePasswordMutation();
+    const [searchParams] = useSearchParams();
+    const returnUrl = searchParams.get("returnUrl");
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -67,11 +69,23 @@ const ChangePasswordPage = () => {
                     autoClose: 5000,
                     withBorder: true
                 })
-                navigate('/')
+                if (returnUrl) {
+                    window.location.href = returnUrl;
+                } else {
+                    navigate('/')
+                }
             })
             .catch(() => setError(true))
             .finally(() => handlers.close())
     };
+
+    const handleCancel = () => {
+        if (returnUrl) {
+            window.location.href = returnUrl;
+        } else {
+            navigate('/')
+        }
+    }
 
     const errorMessage = error ?
         <>
@@ -114,6 +128,10 @@ const ChangePasswordPage = () => {
 
                         <Button fullWidth mt="xl" type='submit'>
                             {t('changePassword.submit')}
+                        </Button>
+
+                        <Button fullWidth mt="xl" variant="default" onClick={handleCancel}>
+                            {t('actions.cancel')}
                         </Button>
 
                         {errorMessage}
