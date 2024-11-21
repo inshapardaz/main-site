@@ -69,6 +69,7 @@ const ChangePasswordPage = () => {
                     autoClose: 5000,
                     withBorder: true
                 })
+
                 if (returnUrl) {
                     window.location.href = returnUrl;
                 } else {
