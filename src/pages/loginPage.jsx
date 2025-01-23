@@ -33,8 +33,8 @@ const LoginPage = () => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.auth.user)
-    const status = useSelector(getLoginStatus)
-    const error = useSelector(getLoginError)
+    const loginStatus = useSelector(getLoginStatus)
+    const loginError = useSelector(getLoginError)
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const returnUrl = searchParams.get("returnUrl");
@@ -50,7 +50,7 @@ const LoginPage = () => {
     });
 
     useEffect(() => {
-        if (status === "succeeded") {
+        if (loginStatus === "succeeded") {
             if (returnUrl) {
                 window.location.href = returnUrl;
             } else {
@@ -61,7 +61,7 @@ const LoginPage = () => {
             dispatch(reset())
         }
 
-    }, [dispatch, status, navigate, returnUrl])
+    }, [dispatch, loginStatus, navigate, returnUrl])
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -87,7 +87,7 @@ const LoginPage = () => {
         await dispatch(login({ email, password }))
     };
 
-    const errorMessage = error ? (
+    const errorMessage = loginError ? (
         <>
             <Space h="md" />
             <Alert variant="light" color="red" title={t('login.error')}
@@ -99,7 +99,7 @@ const LoginPage = () => {
     return (
         <Box pos="relative">
             <form onSubmit={form.onSubmit(onSubmit)}>
-                <LoadingOverlay visible={status === 'loading'} loaderProps={{ children: <Loader size={30} /> }} />
+                <LoadingOverlay visible={loginStatus === 'loading'} loaderProps={{ children: <Loader size={30} /> }} />
                 <Container size={420} my={40}>
                     <Title ta="center" className={classes.title}>
                         {t('login.message')}

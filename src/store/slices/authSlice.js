@@ -131,14 +131,14 @@ export const authSlice = createSlice({
                 state.tokenError = action.error.message;
             })
             .addCase(login.pending, (state) => {
-                state.status = "loading";
+                state.loginStatus = "loading";
             })
             .addCase(login.fulfilled, (state) => {
-                state.status = "succeeded";
+                state.loginStatus = "succeeded";
             })
             .addCase(login.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
+                state.loginStatus = "failed";
+                state.loginError = action.error.message;
             })
             .addCase(logout.pending, (state) => {
                 state.logoutStatus = "loading";
@@ -190,8 +190,8 @@ export const authSlice = createSlice({
     },
 });
 
-export const getLoginStatus = (state) => state?.auth?.status;
-export const getLoginError = (state) => state?.auth?.error;
+export const getLoginStatus = (state) => state?.auth?.loginStatus;
+export const getLoginError = (state) => state?.auth?.loginError;
 export const getTokenStatus = (state) => state?.auth?.tokenStatus;
 export const getTokenError = (state) => state?.auth?.tokenError;
 export const getResetPasswordStatus = (state) => state?.auth?.resetPasswordStatus;
