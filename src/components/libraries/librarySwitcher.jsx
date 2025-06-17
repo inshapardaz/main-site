@@ -26,7 +26,7 @@ import { useGetLibrariesQuery } from '@/store/slices/libraries.api'
 import classes from './librarySwitcher.module.css';
 import { IconRefreshAlert, IconLibrary, IconLibraryEditor } from '@/components/icon';
 import If from '@/components/if';
-import { LIBRARY_URL, LIBRARY_EDITOR_URL } from "@/config";
+import { LIBRARIES_URL, LIBRARY_EDITOR_URL } from "@/config";
 
 //------------------------------------
 
@@ -49,7 +49,7 @@ const LibrarySwitcher = ({ className, onClick = () => { }, children }) => {
 
     const links = libraries ? libraries.data.map((item) => (
         <UnstyledButton key={item.id} className={classes.item} onClick={onClick}
-            component={Link} to={`${LIBRARY_URL}/libraries/${item.id}`}>
+            component={Link} to={`${LIBRARIES_URL}/libraries/${item.id}`}>
             <IconLibrary style={{
                 width: rem(22), height: rem(22)
             }} />
@@ -74,7 +74,7 @@ const LibrarySwitcher = ({ className, onClick = () => { }, children }) => {
                         <Group justify="space-between">
                             <Text visibleFrom="lg" fw={500} className={classes.title}>
                             </Text>
-                            <Anchor size="xs" component={Link} to={`${LIBRARY_URL}/libraries`} c="dimmed" style={{ lineHeight: 1 }}>
+                            <Anchor size="xs" component={Link} to={`${LIBRARIES_URL}`} c="dimmed" style={{ lineHeight: 1 }}>
                                 {t('libraries.viewAll')}
                             </Anchor>
                         </Group>
