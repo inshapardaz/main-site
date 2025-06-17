@@ -15,7 +15,7 @@ if (window.location.host.toLocaleLowerCase() == 'editor.nawishta.dev') {
     window.location.host.toLocaleLowerCase() == 'nawishta.co.uk') {
     NODE_ENV = 'production';
     API_URL = 'https://api.nawishta.co.uk';
-    LIBRARIES_URL = 'https://library.nawishta.co.uk';
+    LIBRARIES_URL = 'https://libraries.nawishta.co.uk';
     LIBRARY_EDITOR_URL = 'https://editor.nawishta.co.uk';
     DICTIONARY_URL = 'https://dictionaries.nawishta.co.uk';
     console.log('Environment is: production');
