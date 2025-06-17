@@ -4,7 +4,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 // UI libraries
-import { DirectionProvider, Loader, LoadingOverlay, MantineProvider } from '@mantine/core';
+import { createTheme, DirectionProvider, Loader, LoadingOverlay, MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
@@ -18,32 +18,35 @@ import { init } from './store/slices/authSlice';
 // ------------------------------------------------------------------
 
 function App() {
-  const lang = useSelector(selectedLanguage);
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
+    const lang = useSelector(selectedLanguage);
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(init());
-  }, [dispatch]);
+    const theme = createTheme({
+        // fontFamily: 'MehrNastaleeq, Segoe UI, sans-serif',
+        scale: 0.9
+    });
 
-  return (
-    <>
-      <HelmetProvider>
-        <Helmet htmlAttributes={{ lang: lang ? lang.locale : 'en' }}>
-          <title>{t('app')}</title>
-        </Helmet>
-        <DirectionProvider >
-          <MantineProvider>
-            <Notifications limit={5} position="bottom-center" />
-            <ModalsProvider>
-              <LoadingOverlay visible={status === 'loading'} loaderProps={{ children: <Loader size={30} /> }} />
-              <Router />
-            </ModalsProvider>
-          </MantineProvider>;
-        </DirectionProvider>
-      </HelmetProvider>
-    </>
-  )
+    useEffect(() => {
+        dispatch(init());
+    }, [dispatch]);
+
+    return (
+        <HelmetProvider>
+            <Helmet htmlAttributes={{ lang: lang ? lang.locale : 'en' }}>
+                <title>{t('app')}</title>
+            </Helmet>
+            <DirectionProvider >
+                <MantineProvider theme={theme}>
+                    <Notifications limit={5} position="bottom-center" />
+                    <ModalsProvider>
+                        <LoadingOverlay visible={status === 'loading'} loaderProps={{ children: <Loader size={30} /> }} />
+                        <Router />
+                    </ModalsProvider>
+                </MantineProvider>;
+            </DirectionProvider>
+        </HelmetProvider>
+    )
 }
 
 export default App

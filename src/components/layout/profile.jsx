@@ -34,7 +34,7 @@ const Profile = () => {
     });
 
     if (user) {
-        return (<>
+        return (
             <Menu
                 width={260}
                 position="bottom-end"
@@ -55,6 +55,10 @@ const Profile = () => {
                             <IconChevronDown
                                 size={12}
                                 stroke={1.5}
+                                style={{
+                                    transform: userMenuOpened ? "rotate(180deg)" : "rotate(0)",
+                                    transitionDuration: "250ms"
+                                }}
                             />
                         </Group>
                     </UnstyledButton>
@@ -88,8 +92,7 @@ const Profile = () => {
                         {t('logout.title')}
                     </Menu.Item>
                 </Menu.Dropdown>
-            </Menu>
-        </>)
+            </Menu>)
     }
     return (<>
         <Button variant="default"

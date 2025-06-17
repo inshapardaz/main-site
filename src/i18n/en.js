@@ -169,7 +169,11 @@ const en = {
             placeholder: "Search libraries...",
         },
         viewAll: "View All"
-    }
+    },
+    libraryEditor: {
+        title: "Library Editor",
+        edit: "Extend library, add and edit books, writings, poetry and much more...."
+    },
 };
 
 export default en;

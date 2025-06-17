@@ -25,6 +25,7 @@ import SwitchHorizontalSvg from '@/assets/icons/switch-horizontal.svg';
 import ToolsSvg from '@/assets/icons/tools.svg';
 import TypographySvg from '@/assets/icons/typography.svg';
 import VocabularySvg from '@/assets/icons/vocabulary.svg';
+import LibraryEdit from '@/assets/icons/libraryEdit.svg';
 import { rem } from '@mantine/core';
 
 //-------------------------------------
@@ -80,3 +81,4 @@ export const IconSettings = (props) => (<Icon src={SettingsSvg} {...props} />)
 export const IconSun = (props) => (<Icon src={SunSvg} {...props} />)
 export const IconSwitchHorizontal = (props) => (<Icon src={SwitchHorizontalSvg} {...props} />)
 export const IconTools = (props) => (<Icon src={ToolsSvg} {...props} />)
+export const IconLibraryEditor = (props) => (<Icon src={LibraryEdit} {...props} />)

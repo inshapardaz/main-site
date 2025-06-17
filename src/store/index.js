@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { uiSlice } from "./slices/uiSlice";
 import { authSlice } from "./slices/authSlice";
 import { authApi } from "./slices/auth.api";
+import { librariesApi } from "./slices/libraries.api";
 // ----------------------------------------------
 
 export const store = configureStore({
@@ -11,8 +12,10 @@ export const store = configureStore({
         [uiSlice.name]: uiSlice.reducer,
         [authSlice.name]: authSlice.reducer,
         [authApi.reducerPath]: authApi.reducer,
+        [librariesApi.reducerPath]: librariesApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
             .concat(authApi.middleware)
+            .concat(librariesApi.middleware)
 });

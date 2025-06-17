@@ -172,6 +172,10 @@ const ur = {
         },
         viewAll: "تمام دیکھیں"
     },
+    libraryEditor: {
+        title: "تدوین کتب",
+        edit: "کتب خانہ میں اضافہ کریں۔ کتب، مضامین، شاعری اور بہت کچھ۔۔۔۔"
+    },
 };
 
 export default ur;
