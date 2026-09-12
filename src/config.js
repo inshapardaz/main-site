@@ -17,7 +17,7 @@ if (window.location.host.toLocaleLowerCase() == 'editor.nawishta.dev') {
     API_URL = 'https://api.nawishta.co.uk';
     LIBRARIES_URL = 'https://libraries.nawishta.co.uk';
     LIBRARY_EDITOR_URL = 'https://editor.nawishta.co.uk';
-    DICTIONARY_URL = 'https://dictionaries.nawishta.co.uk';
+    DICTIONARY_URL = 'https://dictionary.nawishta.co.uk';
     console.log('Environment is: production');
 } else {
     console.log('Environment is: local');
