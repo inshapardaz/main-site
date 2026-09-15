@@ -11,7 +11,7 @@ const SecurePage = () => {
 
     useEffect(() => {
         if (userLoadStatus === 'succeeded' && !user && !window.location.href.includes('/login')) {
-            navigate(`$/account/login?returnUrl=${window.location.href}`)
+            navigate(`/account/login?returnUrl=${encodeURIComponent(window.location.href)}`)
         }
     }, [user, navigate, userLoadStatus])
 
