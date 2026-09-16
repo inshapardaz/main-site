@@ -5,6 +5,9 @@ import ChangePasswordPage from "./changePasswordPage";
 import ForgotPasswordPage from "./forgotPasswordPage";
 import LogoutPage from "./logoutPage";
 import ProfilePage from "./profilePage";
+import MaktabaPage from "./maktabaPage";
+import TermsPage from "./termsPage";
+import PrivacyPage from "./privacyPage";
 
 
 const Pages = {
@@ -14,7 +17,10 @@ const Pages = {
     ChangePasswordPage,
     ForgotPasswordPage,
     ProfilePage,
-    LogoutPage
+    LogoutPage,
+    MaktabaPage,
+    TermsPage,
+    PrivacyPage
 };
 
 export default Pages;

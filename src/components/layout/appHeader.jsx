@@ -23,9 +23,9 @@ import Logo from '../logo';
 import LanguageSwitch from './languageSwitch';
 import DarkModeToggle from './darkModeToggle';
 import Profile from './profile';
-import { IconLibrary, IconDictionary, IconFont, IconHome, IconTools, IconChevronDown } from '../icon';
+import { IconLibrary, IconLibraryEditor, IconDictionary, IconFont, IconHome, IconTools, IconDeviceDesktop, IconChevronDown } from '../icon';
 import LibrarySwitcher from '@/components/libraries/librarySwitcher';
-import { DICTIONARY_URL } from "@/config";
+import { DICTIONARY_URL, LIBRARY_EDITOR_URL, FONTS_URL, TOOLS_URL } from "@/config";
 
 //----------------------------------------------
 
@@ -54,17 +54,27 @@ const AppHeader = () => {
                             </Text>
                             <IconChevronDown size={16} />
                         </LibrarySwitcher>
+                        <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
+                            <IconLibraryEditor size={18} stroke={1.5} />
+                            <Space w="md" />
+                            {t('header.editor')}
+                        </Link>
+                        <Link to="/maktaba" className={classes.link}>
+                            <IconDeviceDesktop size={18} stroke={1.5} />
+                            <Space w="md" />
+                            {t('header.maktaba')}
+                        </Link>
                         <Link to={DICTIONARY_URL} className={classes.link}>
                             <IconDictionary size={18} stroke={1.5} />
                             <Space w="md" />
                             {t('header.dictionaries')}
                         </Link>
-                        <Link to="https://fonts.nawishta.co.uk" className={classes.link}>
+                        <Link to={FONTS_URL} className={classes.link}>
                             <IconFont size={18} stroke={1.5} />
                             <Space w="md" />
                             {t('header.fonts')}
                         </Link>
-                        <Link to="https://tools.nawishta.co.uk" className={classes.link}>
+                        <Link to={TOOLS_URL} className={classes.link}>
                             <IconTools size={18} stroke={1.5} />
                             <Space w="md" />
                             {t('header.tools')}
@@ -104,17 +114,27 @@ const AppHeader = () => {
                             <IconChevronDown />
                         </Group>
                     </LibrarySwitcher>
+                    <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
+                        <IconLibraryEditor size={18} stroke={1.5} />
+                        <Space w="md" />
+                        {t('header.editor')}
+                    </Link>
+                    <Link to="/maktaba" className={classes.link}>
+                        <IconDeviceDesktop size={18} stroke={1.5} />
+                        <Space w="md" />
+                        {t('header.maktaba')}
+                    </Link>
                     <Link to={DICTIONARY_URL} className={classes.link}>
                         <IconDictionary size={18} stroke={1.5} />
                         <Space w="md" />
                         {t('header.dictionaries')}
                     </Link>
-                    <Link to="https://fonts.nawishta.co.uk" className={classes.link}>
+                    <Link to={FONTS_URL} className={classes.link}>
                         <IconFont size={18} stroke={1.5} />
                         <Space w="md" />
                         {t('header.fonts')}
                     </Link>
-                    <Link to="https://tools.nawishta.co.uk" className={classes.link}>
+                    <Link to={TOOLS_URL} className={classes.link}>
                         <IconTools size={18} stroke={1.5} />
                         <Space w="md" />
                         {t('header.tools')}

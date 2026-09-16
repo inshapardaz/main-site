@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ArrowLeftSvg from '@/assets/icons/arrow-left.svg';
 import BookSvg from '@/assets/icons/book.svg';
 import BooksSvg from '@/assets/icons/books.svg';
+import BrandGithubSvg from '@/assets/icons/brand-github.svg';
 import BrandInstagramSvg from '@/assets/icons/brand-instagram.svg';
 import BrandTwitterSvg from '@/assets/icons/brand-twitter.svg';
 import BrandYoutubeSvg from '@/assets/icons/brand-youtube.svg';
@@ -12,6 +13,9 @@ import BuildingArchSvg from '@/assets/icons/building-arch.svg';
 import CategorySvg from '@/assets/icons/category.svg';
 import ChevronDownSvg from '@/assets/icons/chevron-down.svg';
 import ChevronUpSvg from '@/assets/icons/chevron-up.svg';
+import DeviceDesktopSvg from '@/assets/icons/device-desktop.svg';
+import DownloadSvg from '@/assets/icons/download.svg';
+import FeatherSvg from '@/assets/icons/feather.svg';
 import FingerprintSvg from '@/assets/icons/fingerprint.svg';
 import HomeSvg from '@/assets/icons/home.svg';
 import InfoCircleSvg from '@/assets/icons/info-circle.svg';
@@ -61,13 +65,17 @@ Icon.propTypes = {
 export const IconArrowLeft = (props) => (<Icon src={ArrowLeftSvg} {...props} />)
 export const IconBook = (props) => (<Icon src={BookSvg} {...props} />)
 export const IconBooks = (props) => (<Icon src={BooksSvg} {...props} />)
+export const IconBrandGithub = (props) => (<Icon src={BrandGithubSvg} {...props} />)
 export const IconBrandInstagram = (props) => (<Icon src={BrandInstagramSvg} {...props} />)
 export const IconBrandTwitter = (props) => (<Icon src={BrandTwitterSvg} {...props} />)
 export const IconBrandYoutube = (props) => (<Icon src={BrandYoutubeSvg} {...props} />)
 export const IconCategory = (props) => (<Icon src={CategorySvg} {...props} />)
 export const IconChevronDown = (props) => (<Icon src={ChevronDownSvg} {...props} />)
 export const IconChevronUp = (props) => (<Icon src={ChevronUpSvg} {...props} />)
+export const IconDeviceDesktop = (props) => (<Icon src={DeviceDesktopSvg} {...props} />)
 export const IconDictionary = (props) => (<Icon src={VocabularySvg} {...props} />)
+export const IconDownload = (props) => (<Icon src={DownloadSvg} {...props} />)
+export const IconFeather = (props) => (<Icon src={FeatherSvg} {...props} />)
 export const IconFingerprint = (props) => (<Icon src={FingerprintSvg} {...props} />)
 export const IconFont = (props) => (<Icon src={TypographySvg} {...props} />)
 export const IconHome = (props) => (<Icon src={HomeSvg} {...props} />)
