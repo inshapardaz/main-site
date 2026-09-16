@@ -1,6 +1,10 @@
 const en = {
     app: "Nawishta",
     slogan: "A comprehensive collection of urdu text and tools, presented brilliantly.",
+    brand: {
+        en: "Nawishta",
+        ur: "نوشتہ",
+    },
     header: {
         home: "Home",
         libraries: "Libraries",

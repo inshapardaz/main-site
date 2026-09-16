@@ -10,8 +10,9 @@ import {
     Drawer,
     ScrollArea,
     rem,
-    Space,
+    Title,
     Text,
+    ActionIcon,
 } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
@@ -19,13 +20,12 @@ import { useDisclosure } from '@mantine/hooks';
 // Local Imports
 import classes from './appHeader.module.css';
 
-import Logo from '../logo';
 import LanguageSwitch from './languageSwitch';
 import DarkModeToggle from './darkModeToggle';
 import Profile from './profile';
-import { IconLibrary, IconLibraryEditor, IconDictionary, IconFont, IconHome, IconTools, IconDeviceDesktop, IconChevronDown } from '../icon';
+import { IconChevronDown, IconBrandGithub } from '../icon';
 import LibrarySwitcher from '@/components/libraries/librarySwitcher';
-import { DICTIONARY_URL, LIBRARY_EDITOR_URL, FONTS_URL, TOOLS_URL } from "@/config";
+import { LIBRARY_EDITOR_URL, TOOLS_URL, GITHUB_ORG_URL } from "@/config";
 
 //----------------------------------------------
 
@@ -36,54 +36,44 @@ const AppHeader = () => {
     return (
         <Box>
             <header className={classes.header}>
-                <Group justify="space-between" h="100%">
-                    <Group>
-                        <Logo showName />
-                    </Group>
-                    <Group h="100%" gap={0} visibleFrom="sm">
-                        <Link to="/" className={classes.link}>
-                            <IconHome size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.home')}
-                        </Link>
-                        <LibrarySwitcher className={classes.link} >
-                            <IconLibrary height="24px" />
-                            <Space w="md" />
-                            <Text visibleFrom="lg" size="xs">
-                                {t('header.libraries')}
-                            </Text>
-                            <IconChevronDown size={16} />
+                <Group justify="space-between" h="100%" wrap="nowrap">
+                    <Link to="/" className={classes.brand}>
+                        <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
+                        <Text className={classes.brandUr}>{t('brand.ur')}</Text>
+                    </Link>
+
+                    <Group h="100%" gap={0} visibleFrom="sm" className={classes.nav}>
+                        <LibrarySwitcher className={classes.navLink}>
+                            {t('header.libraries')}
+                            <IconChevronDown size={14} className={classes.navChevron} />
                         </LibrarySwitcher>
-                        <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
-                            <IconLibraryEditor size={18} stroke={1.5} />
-                            <Space w="md" />
+                        <Link to={LIBRARY_EDITOR_URL} className={classes.navLink}>
                             {t('header.editor')}
                         </Link>
-                        <Link to="/maktaba" className={classes.link}>
-                            <IconDeviceDesktop size={18} stroke={1.5} />
-                            <Space w="md" />
+                        <Link to="/maktaba" className={classes.navLink}>
                             {t('header.maktaba')}
                         </Link>
-                        <Link to={DICTIONARY_URL} className={classes.link}>
-                            <IconDictionary size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.dictionaries')}
-                        </Link>
-                        <Link to={FONTS_URL} className={classes.link}>
-                            <IconFont size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.fonts')}
-                        </Link>
-                        <Link to={TOOLS_URL} className={classes.link}>
-                            <IconTools size={18} stroke={1.5} />
-                            <Space w="md" />
+                        <Link to={TOOLS_URL} className={classes.navLink}>
                             {t('header.tools')}
                         </Link>
                     </Group>
-                    <Group visibleFrom="sm">
+
+                    <Group visibleFrom="sm" gap="sm" wrap="nowrap">
                         <LanguageSwitch />
                         <DarkModeToggle />
                         <Profile />
+                        <ActionIcon
+                            component="a"
+                            href={GITHUB_ORG_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            variant="default"
+                            size="lg"
+                            radius="md"
+                            aria-label="GitHub"
+                        >
+                            <IconBrandGithub size={18} stroke={1.5} />
+                        </ActionIcon>
                     </Group>
 
                     <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
@@ -102,49 +92,39 @@ const AppHeader = () => {
                 <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
                     <Divider my="sm" />
 
-                    <Link to="/" className={classes.link}>
-                        <IconHome size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.home')}
-                    </Link>
-                    <LibrarySwitcher >
+                    <LibrarySwitcher>
                         <Group className={classes.link}>
-                            <IconLibrary height="24px" />
                             {t('header.libraries')}
-                            <IconChevronDown />
+                            <IconChevronDown size={14} />
                         </Group>
                     </LibrarySwitcher>
                     <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
-                        <IconLibraryEditor size={18} stroke={1.5} />
-                        <Space w="md" />
                         {t('header.editor')}
                     </Link>
                     <Link to="/maktaba" className={classes.link}>
-                        <IconDeviceDesktop size={18} stroke={1.5} />
-                        <Space w="md" />
                         {t('header.maktaba')}
                     </Link>
-                    <Link to={DICTIONARY_URL} className={classes.link}>
-                        <IconDictionary size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.dictionaries')}
-                    </Link>
-                    <Link to={FONTS_URL} className={classes.link}>
-                        <IconFont size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.fonts')}
-                    </Link>
                     <Link to={TOOLS_URL} className={classes.link}>
-                        <IconTools size={18} stroke={1.5} />
-                        <Space w="md" />
                         {t('header.tools')}
                     </Link>
 
                     <Divider my="sm" />
 
-                    <Group my="sm" >
+                    <Group my="sm">
                         <LanguageSwitch />
                         <DarkModeToggle />
+                        <ActionIcon
+                            component="a"
+                            href={GITHUB_ORG_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            variant="default"
+                            size="lg"
+                            radius="md"
+                            aria-label="GitHub"
+                        >
+                            <IconBrandGithub size={18} stroke={1.5} />
+                        </ActionIcon>
                     </Group>
 
                     <Divider my="sm" />

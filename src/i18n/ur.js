@@ -1,6 +1,10 @@
 const ur = {
     app: "نوشتہ",
     slogan: "اردو کی کتابیں اور بہت کچھ ، بہترین انداز میں",
+    brand: {
+        en: "Nawishta",
+        ur: "نوشتہ",
+    },
     header: {
         home: "صفحۂ اوّل",
         libraries: "کتب خانے",
