@@ -1,14 +1,43 @@
 .hero {
-  background: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-  padding-top: calc(var(--mantine-spacing-xl) * 3);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 3);
+  position: relative;
+  overflow: hidden;
+  background: var(--mantine-color-dark-8);
+  padding-top: calc(var(--mantine-spacing-xl) * 4);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 4);
+}
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1800px;
+  overflow: hidden;
+}
+
+.heroScreenshot {
+  width: min(1200px, 130%);
+  max-width: none;
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7), 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+  transform: rotateX(45deg) rotateZ(35deg) scale(1.15);
+  transform-style: preserve-3d;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    display: none;
+  }
 }
 
 .heroContainer {
+  position: relative;
+  z-index: 2;
   text-align: center;
 }
 
 .title {
+  color: var(--mantine-color-white);
   font-size: rem(40px);
   font-weight: 900;
   line-height: 1.1;
@@ -16,6 +45,10 @@
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: rem(28px);
   }
+}
+
+.pitch {
+  color: var(--mantine-color-gray-3);
 }
 
 .section {

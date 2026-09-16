@@ -14,6 +14,7 @@ import {
   ThemeIcon,
   List,
   Anchor,
+  Overlay,
 } from '@mantine/core';
 
 // Local imports
@@ -28,6 +29,7 @@ import {
   IconCategory,
 } from '@/components/icon';
 import { MAKTABA_REPO_URL, MAKTABA_RELEASES_URL } from '@/config';
+import maktabaScreenshot from '@/assets/images/maktaba-screenshot.png';
 
 // ------------------------------------------------------------------
 
@@ -81,12 +83,20 @@ const MaktabaPage = () => {
   return (<>
     {/* Hero */}
     <div className={classes.hero}>
+      <div className={classes.heroBackdrop}>
+        <img src={maktabaScreenshot} alt="" className={classes.heroScreenshot} />
+      </div>
+      <Overlay
+        gradient="linear-gradient(180deg, rgba(10, 15, 25, 0.55) 0%, rgba(10, 15, 25, 0.85) 75%)"
+        opacity={1}
+        zIndex={1}
+      />
       <Container size="sm" className={classes.heroContainer}>
         <ThemeIcon size={64} radius="xl" variant="light" mx="auto" mb="md">
           <IconDeviceDesktop size={36} stroke={1.5} />
         </ThemeIcon>
         <Title className={classes.title}>{t('maktaba.hero.title')}</Title>
-        <Text size="lg" c="dimmed" mt="sm">{t('maktaba.hero.pitch')}</Text>
+        <Text size="lg" className={classes.pitch} mt="sm">{t('maktaba.hero.pitch')}</Text>
         <Box mt="xl">
           {renderDownloadButtons('lg')}
         </Box>
