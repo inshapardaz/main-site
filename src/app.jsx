@@ -24,6 +24,7 @@ function App() {
 
     const theme = createTheme({
         // fontFamily: 'MehrNastaleeq, Segoe UI, sans-serif',
+        primaryColor: 'red',
         scale: 0.9
     });
 

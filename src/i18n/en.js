@@ -184,7 +184,7 @@ const en = {
     },
     home: {
         hero: {
-            title: "Digitising and publishing Urdu & Punjabi literature, one book at a time.",
+            title: "Modern tools for Urdu & Punjabi literature.",
             subhead: "Read books online, publish your own with proper Nastaliq and poetry-aware layouts, or manage a local collection on your own computer.",
             browseLibrary: "Browse the Library",
             tryEditor: "Try the Editor",
@@ -196,19 +196,22 @@ const en = {
         },
         products: {
             library: {
+                badge: "libraries.nawishta.co.uk",
                 title: "Nawishta Library",
                 description: "Browse and read digitised Urdu and Punjabi books online.",
-                cta: "Browse the Library",
+                seeCta: "See Library",
             },
             editor: {
+                badge: "editor.nawishta.co.uk",
                 title: "Nawishta Editor",
                 description: "Create and publish books with proper RTL, Nastaliq, and poetry layout support — ghazals, stanzas, footnotes and more.",
-                cta: "Open the Editor",
+                seeCta: "See Editor",
             },
             maktaba: {
-                title: "Maktaba (desktop)",
-                description: "Manage your own local ebook collection — import EPUB/PDF, organise by author, series and tags, and read offline in English or Urdu.",
-                cta: "Download Maktaba",
+                badge: "Hosted here — no subdomain",
+                title: "Maktaba",
+                description: "A free desktop app for managing your own local ebook collection — no account, no cloud.",
+                seeCta: "See Maktaba",
             },
         },
         features: {
