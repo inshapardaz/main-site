@@ -14,6 +14,7 @@ import {
   Stack,
   Box,
   Anchor,
+  Overlay,
 } from '@mantine/core';
 
 // Local imports
@@ -82,6 +83,11 @@ const HomePage = () => {
   return (<>
     {/* Hero */}
     <div className={classes.hero}>
+      <Overlay
+        gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, .7) 100%)"
+        opacity={1}
+        zIndex={0}
+      />
       <Container size="md" className={classes.heroContainer}>
         <Title className={classes.title}>
           {t('home.hero.title')}
