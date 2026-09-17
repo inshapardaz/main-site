@@ -10,9 +10,7 @@ import {
     TextInput,
     Button,
     Container,
-    Group,
     Anchor,
-    Center,
     Box,
     Alert,
     LoadingOverlay,
@@ -24,9 +22,9 @@ import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 
 // Local Import
-import classes from './forgotPassword.module.css';
+import classes from './loginPage.module.css';
 import { useForgetPasswordMutation } from '@/store/slices/auth.api';
-import { IconArrowLeft, IconInfoCircle } from '@/components/icon';
+import { IconInfoCircle } from '@/components/icon';
 //-------------------------------
 
 const ForgotPasswordPage = () => {
@@ -83,31 +81,31 @@ const ForgotPasswordPage = () => {
         <Box pos="relative">
             <LoadingOverlay visible={busy || isLoading} loaderProps={{ children: <Loader size={30} /> }} />
             <form onSubmit={form.onSubmit(onSubmit)}>
-                <Container size={460} my={30}>
-                    <Title className={classes.title} ta="center">
-                        {t('forgotPassword.title')}
-                    </Title>
-                    <Text c="dimmed" fz="sm" ta="center">
-                        {t('forgotPassword.message')}
-                    </Text>
+                <Container size={420} className={classes.container}>
+                    <Paper shadow="md" p={40} radius="lg">
+                        <Title className={classes.title}>
+                            {t('forgotPassword.heading')}
+                        </Title>
+                        <Text c="dimmed" size="sm" mt={4}>
+                            {t('forgotPassword.message')}
+                        </Text>
 
-                    <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
-                        <TextInput label={t('forgotPassword.email.title')}
+                        <TextInput
+                            mt="xl"
+                            label={t('forgotPassword.email.title')}
+                            placeholder={t('forgotPassword.email.placeholder')}
                             key={form.key('email')}
                             {...form.getInputProps('email')}
                         />
-                        <Group justify="space-between" mt="lg" className={classes.controls}>
-                            <Anchor c="dimmed" size="sm" className={classes.control} component={Link} to="/account/login">
-                                <Center inline>
-                                    <IconArrowLeft size={12} stroke={1.5} />
-                                    <Box ml={5}>{t('login.title')}</Box>
-                                </Center>
-                            </Anchor>
-                            <Button type="submit" className={classes.control}>
-                                {t('forgotPassword.submit')}
-                            </Button>
-                        </Group>
                         {errorMessage}
+                        <Button fullWidth mt="lg" color="red" type="submit">
+                            {t('forgotPassword.submit')}
+                        </Button>
+                        <Text ta="center" mt="lg">
+                            <Anchor size="sm" c="red" component={Link} to="/account/login">
+                                {t('forgotPassword.backToLogin')}
+                            </Anchor>
+                        </Text>
                     </Paper>
                 </Container>
             </form>
