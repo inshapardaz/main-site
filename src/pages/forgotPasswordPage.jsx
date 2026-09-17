@@ -98,11 +98,11 @@ const ForgotPasswordPage = () => {
                             {...form.getInputProps('email')}
                         />
                         {errorMessage}
-                        <Button fullWidth mt="lg" color="red" type="submit">
+                        <Button fullWidth mt="lg" type="submit">
                             {t('forgotPassword.submit')}
                         </Button>
                         <Text ta="center" mt="lg">
-                            <Anchor size="sm" c="red" component={Link} to="/account/login">
+                            <Anchor size="sm" component={Link} to="/account/login">
                                 {t('forgotPassword.backToLogin')}
                             </Anchor>
                         </Text>

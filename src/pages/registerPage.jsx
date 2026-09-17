@@ -137,24 +137,24 @@ const RegisterPage = () => {
                         />
                         {errorMessage}
 
-                        <Button fullWidth mt="lg" color="red" type='submit'>
+                        <Button fullWidth mt="lg" type='submit'>
                             {t('register.submit')}
                         </Button>
 
                         <Text c="dimmed" size="sm" ta="center" mt="lg">
                             {t('register.agreementPrefix')}{' '}
-                            <Anchor size="sm" c="red" component={Link} to="/terms">
+                            <Anchor size="sm" component={Link} to="/terms">
                                 {t('footer.terms')}
                             </Anchor>
                             {' '}{t('register.agreementAnd')}{' '}
-                            <Anchor size="sm" c="red" component={Link} to="/privacy">
+                            <Anchor size="sm" component={Link} to="/privacy">
                                 {t('register.privacyPolicy')}
                             </Anchor>.
                         </Text>
 
                         <Text c="dimmed" size="sm" ta="center" mt="md">
                             {t('register.loginMessage')}{' '}
-                            <Anchor size="sm" c="red" component={Link} to="/account/login">
+                            <Anchor size="sm" component={Link} to="/account/login">
                                 {t('login.submit')}
                             </Anchor>
                         </Text>

@@ -124,16 +124,16 @@ const LoginPage = () => {
                         />
                         {errorMessage}
                         <Group justify="flex-end" mt="sm">
-                            <Anchor size="sm" c="red" component={Link} to="/account/forgot-password">
+                            <Anchor size="sm" component={Link} to="/account/forgot-password">
                                 {t('forgotPassword.title')}
                             </Anchor>
                         </Group>
-                        <Button fullWidth mt="lg" color="red" type='submit'>
+                        <Button fullWidth mt="lg" type='submit'>
                             {t('login.submit')}
                         </Button>
                         <Text c="dimmed" size="sm" ta="center" mt="lg">
                             {t('login.registerMessage')}{' '}
-                            <Anchor size="sm" c="red" component={Link} to="/account/register">
+                            <Anchor size="sm" component={Link} to="/account/register">
                                 {t('login.createAccount')}
                             </Anchor>
                         </Text>
