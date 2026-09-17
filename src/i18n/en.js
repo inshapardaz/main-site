@@ -42,10 +42,14 @@ const en = {
     },
     login: {
         title: "Login",
-        message: 'Welcome back!',
-        registerMessage: 'Do not have an account yet?',
+        submit: "Log in",
+        message: 'Welcome back',
+        subtitle: 'Log in to your Nawishta account.',
+        registerMessage: "Don't have an account?",
+        createAccount: 'Create one',
         email: {
             title: "Email",
+            placeholder: "you@example.com",
             error: "Email is invalid",
             required: "Email is required",
         },
@@ -60,7 +64,7 @@ const en = {
         confirmation: "Are you sure you want to log out?",
     },
     forgotPassword: {
-        title: "Forgot Password",
+        title: "Forgot password?",
         message: "Enter your email to get a reset link",
         submit: "Get Password",
         email: {

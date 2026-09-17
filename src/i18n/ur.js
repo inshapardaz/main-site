@@ -42,10 +42,14 @@ const ur = {
     },
     login: {
         title: "داخل ہوں",
-        message: 'خوش آمدید!',
+        submit: "داخل ہوں",
+        message: 'خوش آمدید',
+        subtitle: 'اپنے نوشتہ اکاؤنٹ میں داخل ہوں۔',
         registerMessage: 'کیا آپ کا اکاؤنٹ موجود نہیں؟',
+        createAccount: 'اکاؤنٹ بنائیں',
         email: {
             title: "ای میل",
+            placeholder: "you@example.com",
             error: "ای میل درست نہیں",
             required: "ای میل ضروری ہے",
         },

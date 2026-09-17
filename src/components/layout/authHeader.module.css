@@ -1,0 +1,36 @@
+.header {
+  height: rem(60px);
+}
+
+.inner {
+  height: rem(60px);
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: rem(8px);
+  text-decoration: none;
+}
+
+.logo {
+  height: rem(28px);
+  width: rem(28px);
+  background-image: url('@/assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.brandEn {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-weight: 800;
+  letter-spacing: rem(-0.3px);
+}
+
+.brandUr {
+  color: var(--mantine-color-red-6);
+  font-weight: 600;
+  font-size: rem(20px);
+}

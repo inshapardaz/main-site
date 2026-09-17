@@ -100,19 +100,19 @@ const LoginPage = () => {
         <Box pos="relative">
             <form onSubmit={form.onSubmit(onSubmit)}>
                 <LoadingOverlay visible={loginStatus === 'loading'} loaderProps={{ children: <Loader size={30} /> }} />
-                <Container size={420} my={40}>
-                    <Title ta="center" className={classes.title}>
-                        {t('login.message')}
-                    </Title>
-                    <Text c="dimmed" size="sm" ta="center" mt={5}>
-                        {t('login.registerMessage')}
-                        <Anchor size="sm" component={Link} to="/account/register">
-                            {t('register.title')}
-                        </Anchor>
-                    </Text>
+                <Container size={420} className={classes.container}>
+                    <Paper shadow="md" p={40} radius="lg">
+                        <Title className={classes.title}>
+                            {t('login.message')}
+                        </Title>
+                        <Text c="dimmed" size="sm" mt={4}>
+                            {t('login.subtitle')}
+                        </Text>
 
-                    <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <TextInput label={t('login.email.title')}
+                        <TextInput
+                            mt="xl"
+                            label={t('login.email.title')}
+                            placeholder={t('login.email.placeholder')}
                             key={form.key('email')}
                             {...form.getInputProps('email')}
                         />
@@ -123,14 +123,20 @@ const LoginPage = () => {
                             {...form.getInputProps('password')}
                         />
                         {errorMessage}
-                        <Group justify="space-between" mt="lg">
-                            <Anchor size="sm" component={Link} to="/account/forgot-password">
+                        <Group justify="flex-end" mt="sm">
+                            <Anchor size="sm" c="red" component={Link} to="/account/forgot-password">
                                 {t('forgotPassword.title')}
                             </Anchor>
                         </Group>
-                        <Button fullWidth mt="xl" type='submit'>
-                            {t('login.title')}
+                        <Button fullWidth mt="lg" color="red" type='submit'>
+                            {t('login.submit')}
                         </Button>
+                        <Text c="dimmed" size="sm" ta="center" mt="lg">
+                            {t('login.registerMessage')}{' '}
+                            <Anchor size="sm" c="red" component={Link} to="/account/register">
+                                {t('login.createAccount')}
+                            </Anchor>
+                        </Text>
                     </Paper>
                 </Container>
             </form>

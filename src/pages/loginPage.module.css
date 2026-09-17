@@ -1,6 +1,8 @@
+.container {
+    padding-top: calc(var(--mantine-spacing-xl) * 3);
+    padding-bottom: calc(var(--mantine-spacing-xl) * 3);
+}
+
 .title {
-    font-family:
-      Greycliff CF,
-      var(--mantine-font-family);
-    font-weight: 900;
-  }
+    font-weight: 800;
+}
