@@ -14,6 +14,9 @@ const Router = () => {
             <Routes>
                 <Route element={<LayoutWithHeader />}>
                     <Route path="/" element={<Pages.HomePage />} />
+                    <Route path="/maktaba" element={<Pages.MaktabaPage />} />
+                    <Route path="/terms" element={<Pages.TermsPage />} />
+                    <Route path="/privacy" element={<Pages.PrivacyPage />} />
                     <Route element={<SecurePage />}>
                         <Route
                             path="/account/change-password"

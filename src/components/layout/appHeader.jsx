@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 import {
     Group,
     Divider,
-    Box,
+    Container,
     Burger,
     Drawer,
     ScrollArea,
     rem,
-    Space,
-    Text,
+    Title,
+    ActionIcon,
 } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
@@ -19,13 +19,10 @@ import { useDisclosure } from '@mantine/hooks';
 // Local Imports
 import classes from './appHeader.module.css';
 
-import Logo from '../logo';
-import LanguageSwitch from './languageSwitch';
-import DarkModeToggle from './darkModeToggle';
 import Profile from './profile';
-import { IconLibrary, IconDictionary, IconFont, IconHome, IconTools, IconChevronDown } from '../icon';
+import { IconChevronDown, IconBrandGithub } from '../icon';
 import LibrarySwitcher from '@/components/libraries/librarySwitcher';
-import { DICTIONARY_URL } from "@/config";
+import { LIBRARY_EDITOR_URL, TOOLS_URL, GITHUB_ORG_URL } from "@/config";
 
 //----------------------------------------------
 
@@ -34,51 +31,47 @@ const AppHeader = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
 
     return (
-        <Box>
-            <header className={classes.header}>
-                <Group justify="space-between" h="100%">
-                    <Group>
-                        <Logo showName />
-                    </Group>
-                    <Group h="100%" gap={0} visibleFrom="sm">
-                        <Link to="/" className={classes.link}>
-                            <IconHome size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.home')}
-                        </Link>
-                        <LibrarySwitcher className={classes.link} >
-                            <IconLibrary height="24px" />
-                            <Space w="md" />
-                            <Text visibleFrom="lg" size="xs">
-                                {t('header.libraries')}
-                            </Text>
-                            <IconChevronDown size={16} />
-                        </LibrarySwitcher>
-                        <Link to={DICTIONARY_URL} className={classes.link}>
-                            <IconDictionary size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.dictionaries')}
-                        </Link>
-                        <Link to="https://fonts.nawishta.co.uk" className={classes.link}>
-                            <IconFont size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.fonts')}
-                        </Link>
-                        <Link to="https://tools.nawishta.co.uk" className={classes.link}>
-                            <IconTools size={18} stroke={1.5} />
-                            <Space w="md" />
-                            {t('header.tools')}
-                        </Link>
-                    </Group>
-                    <Group visibleFrom="sm">
-                        <LanguageSwitch />
-                        <DarkModeToggle />
-                        <Profile />
-                    </Group>
+        <header className={classes.header}>
+            <Container size="lg" className={classes.inner}>
+                <Link to="/" className={classes.brand}>
+                    <i className={classes.logo} />
+                    <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
+                </Link>
 
-                    <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+                <Group gap={5} visibleFrom="sm">
+                    <LibrarySwitcher className={classes.link}>
+                        {t('header.libraries')}
+                        <IconChevronDown size={14} className={classes.navChevron} />
+                    </LibrarySwitcher>
+                    <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
+                        {t('header.editor')}
+                    </Link>
+                    <Link to="/maktaba" className={classes.link}>
+                        {t('header.maktaba')}
+                    </Link>
+                    <Link to={TOOLS_URL} className={classes.link}>
+                        {t('header.tools')}
+                    </Link>
                 </Group>
-            </header>
+
+                <Group visibleFrom="sm" gap="sm" wrap="nowrap">
+                    <Profile />
+                    <ActionIcon
+                        component="a"
+                        href={GITHUB_ORG_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        variant="default"
+                        size="lg"
+                        radius="md"
+                        aria-label="GitHub"
+                    >
+                        <IconBrandGithub size={18} stroke={1.5} />
+                    </ActionIcon>
+                </Group>
+
+                <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" size="sm" aria-label="Toggle navigation" />
+            </Container>
 
             <Drawer
                 opened={drawerOpened}
@@ -92,39 +85,37 @@ const AppHeader = () => {
                 <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
                     <Divider my="sm" />
 
-                    <Link to="/" className={classes.link}>
-                        <IconHome size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.home')}
-                    </Link>
-                    <LibrarySwitcher >
-                        <Group className={classes.link}>
-                            <IconLibrary height="24px" />
+                    <LibrarySwitcher>
+                        <Group className={classes.drawerLink}>
                             {t('header.libraries')}
-                            <IconChevronDown />
+                            <IconChevronDown size={14} />
                         </Group>
                     </LibrarySwitcher>
-                    <Link to={DICTIONARY_URL} className={classes.link}>
-                        <IconDictionary size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.dictionaries')}
+                    <Link to={LIBRARY_EDITOR_URL} className={classes.drawerLink}>
+                        {t('header.editor')}
                     </Link>
-                    <Link to="https://fonts.nawishta.co.uk" className={classes.link}>
-                        <IconFont size={18} stroke={1.5} />
-                        <Space w="md" />
-                        {t('header.fonts')}
+                    <Link to="/maktaba" className={classes.drawerLink}>
+                        {t('header.maktaba')}
                     </Link>
-                    <Link to="https://tools.nawishta.co.uk" className={classes.link}>
-                        <IconTools size={18} stroke={1.5} />
-                        <Space w="md" />
+                    <Link to={TOOLS_URL} className={classes.drawerLink}>
                         {t('header.tools')}
                     </Link>
 
                     <Divider my="sm" />
 
-                    <Group my="sm" >
-                        <LanguageSwitch />
-                        <DarkModeToggle />
+                    <Group justify="center" my="sm">
+                        <ActionIcon
+                            component="a"
+                            href={GITHUB_ORG_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            variant="default"
+                            size="lg"
+                            radius="md"
+                            aria-label="GitHub"
+                        >
+                            <IconBrandGithub size={18} stroke={1.5} />
+                        </ActionIcon>
                     </Group>
 
                     <Divider my="sm" />
@@ -134,7 +125,7 @@ const AppHeader = () => {
                     </Group>
                 </ScrollArea>
             </Drawer>
-        </Box >
+        </header>
     );
 }
 

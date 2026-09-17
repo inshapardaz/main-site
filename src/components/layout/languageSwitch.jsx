@@ -8,7 +8,7 @@ import { ActionIcon, Avatar, Button, Menu } from "@mantine/core";
 // Local Import
 import { languages, selectedLanguage, setLocale } from "@/store/slices/uiSlice";
 //----------------------------------
-const LanguageAvatar = ({ language, color = "grey" }) => (<Avatar radius="sm" color={color}>{language ? language.key : '-'}</Avatar>);
+const LanguageAvatar = ({ language, color = "grey" }) => (<Avatar radius="sm" size="sm" color={color}>{language ? language.key : '-'}</Avatar>);
 LanguageAvatar.propTypes = {
     language: propTypes.object,
     color: propTypes.string
@@ -41,7 +41,7 @@ const LanguageSwitch = () => {
             </Button.Group>
             <Menu shadow="md" width={200} visibleFrom="sm">
                 <Menu.Target>
-                    <ActionIcon variant="default" size="xl" aria-label="Select Language">
+                    <ActionIcon variant="default" size="lg" radius="md" aria-label="Select Language">
                         <LanguageAvatar language={lang} />
                     </ActionIcon>
                 </Menu.Target>

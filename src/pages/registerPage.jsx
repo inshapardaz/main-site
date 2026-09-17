@@ -6,7 +6,6 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
     TextInput,
     PasswordInput,
-    Checkbox,
     Anchor,
     Paper,
     Title,
@@ -46,7 +45,6 @@ const RegisterPage = () => {
             email: '',
             password: '',
             confirmPassword: '',
-            acceptTerms: false
         },
 
         validate: {
@@ -66,14 +64,15 @@ const RegisterPage = () => {
                     return t('register.confirmPassword.match')
                 return null;
             },
-            acceptTerms: (value) => value ? null : t('register.acceptTerms.requires')
         }
     });
 
-    const onSubmit = ({ name, password, acceptTerms }) => {
+    const onSubmit = ({ name, password }) => {
         handlers.open()
         setError(false)
-        register({ code, name, password, acceptTerms })
+        // Creating an account implies agreement to the Terms & Privacy Policy
+        // linked directly below the submit button (no separate checkbox).
+        register({ code, name, password, acceptTerms: true })
             .unwrap()
             .then(() => {
                 notifications.show({
@@ -101,23 +100,26 @@ const RegisterPage = () => {
         <Box pos="relative">
             <LoadingOverlay visible={busy || isLoading} loaderProps={{ children: <Loader size={30} /> }} />
             <form onSubmit={form.onSubmit(onSubmit)}>
-                <Container size={420} my={40}>
-                    <Title ta="center" className={classes.title}>
-                        {t('register.title')}
-                    </Title>
-                    <Text c="dimmed" size="sm" ta="center" mt={5}>
-                        {t('register.loginMessage')}
-                        <Anchor size="sm" component={Link} to="/account/login">
-                            {t('login.title')}
-                        </Anchor>
-                    </Text>
+                <Container size={420} className={classes.container}>
+                    <Paper shadow="md" p={40} radius="lg">
+                        <Title className={classes.title}>
+                            {t('register.heading')}
+                        </Title>
+                        <Text c="dimmed" size="sm" mt={4}>
+                            {t('register.subtitle')}
+                        </Text>
 
-                    <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <TextInput label={t('register.name.label')}
+                        <TextInput
+                            mt="xl"
+                            label={t('register.name.label')}
+                            placeholder={t('register.name.placeholder')}
                             key={form.key('name')}
                             {...form.getInputProps('name')}
                         />
-                        <TextInput label={t('register.email.label')}
+                        <TextInput
+                            mt="md"
+                            label={t('register.email.label')}
+                            placeholder={t('register.email.placeholder')}
                             key={form.key('email')}
                             {...form.getInputProps('email')}
                         />
@@ -133,21 +135,29 @@ const RegisterPage = () => {
                             key={form.key('confirmPassword')}
                             {...form.getInputProps('confirmPassword')}
                         />
-
-                        <Space h="md" />
-                        <Checkbox label={t('register.acceptTerms.title')}
-                            key={form.key('acceptTerms')}
-                            {...form.getInputProps('acceptTerms')} />
-                        <Space h="md" />
-
-                        <Anchor size="sm" component={Link} to="/account/forgot-password">
-                            {t('forgotPassword.title')}
-                        </Anchor>
-
-                        <Button fullWidth mt="xl" type='submit'>
-                            {t('register.title')}
-                        </Button>
                         {errorMessage}
+
+                        <Button fullWidth mt="lg" type='submit'>
+                            {t('register.submit')}
+                        </Button>
+
+                        <Text c="dimmed" size="sm" ta="center" mt="lg">
+                            {t('register.agreementPrefix')}{' '}
+                            <Anchor size="sm" component={Link} to="/terms">
+                                {t('footer.terms')}
+                            </Anchor>
+                            {' '}{t('register.agreementAnd')}{' '}
+                            <Anchor size="sm" component={Link} to="/privacy">
+                                {t('register.privacyPolicy')}
+                            </Anchor>.
+                        </Text>
+
+                        <Text c="dimmed" size="sm" ta="center" mt="md">
+                            {t('register.loginMessage')}{' '}
+                            <Anchor size="sm" component={Link} to="/account/login">
+                                {t('login.submit')}
+                            </Anchor>
+                        </Text>
                     </Paper>
                 </Container>
             </form>

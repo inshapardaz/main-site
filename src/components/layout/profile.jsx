@@ -95,11 +95,13 @@ const Profile = () => {
             </Menu>)
     }
     return (<>
-        <Button variant="default"
+        <Button variant="subtle"
+            radius="xl"
             component={Link}
             to="/account/login">
             {t('login.title')}</Button>
         <Button
+            radius="xl"
             component={Link}
             to="/account/register">
             {t('register.title')}
