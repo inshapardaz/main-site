@@ -5,6 +5,11 @@
 
 .inner {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    flex-direction: column;
+    gap: var(--mantine-spacing-md);
+  }
 }

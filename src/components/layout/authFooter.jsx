@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Anchor, Container, Group } from '@mantine/core';
 
 // Local Imports
+import LanguageSwitch from './languageSwitch';
+import DarkModeToggle from './darkModeToggle';
 import classes from './authFooter.module.css';
 
 //----------------------------------------------
@@ -22,6 +24,10 @@ const AuthFooter = () => {
                     <Anchor component={Link} to="/privacy" c="dimmed" size="sm">
                         {t('footer.privacy')}
                     </Anchor>
+                </Group>
+                <Group gap="sm">
+                    <LanguageSwitch />
+                    <DarkModeToggle />
                 </Group>
             </Container>
         </div>

@@ -33,12 +33,6 @@
   letter-spacing: rem(-0.3px);
 }
 
-.brandUr {
-  color: var(--mantine-color-red-6);
-  font-weight: 600;
-  font-size: rem(20px);
-}
-
 .link {
   display: flex;
   align-items: center;

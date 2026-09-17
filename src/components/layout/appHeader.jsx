@@ -11,7 +11,6 @@ import {
     ScrollArea,
     rem,
     Title,
-    Text,
     ActionIcon,
 } from '@mantine/core';
 
@@ -20,8 +19,6 @@ import { useDisclosure } from '@mantine/hooks';
 // Local Imports
 import classes from './appHeader.module.css';
 
-import LanguageSwitch from './languageSwitch';
-import DarkModeToggle from './darkModeToggle';
 import Profile from './profile';
 import { IconChevronDown, IconBrandGithub } from '../icon';
 import LibrarySwitcher from '@/components/libraries/librarySwitcher';
@@ -39,7 +36,6 @@ const AppHeader = () => {
                 <Link to="/" className={classes.brand}>
                     <i className={classes.logo} />
                     <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
-                    <Text className={classes.brandUr}>{t('brand.ur')}</Text>
                 </Link>
 
                 <Group gap={5} visibleFrom="sm">
@@ -59,8 +55,6 @@ const AppHeader = () => {
                 </Group>
 
                 <Group visibleFrom="sm" gap="sm" wrap="nowrap">
-                    <LanguageSwitch />
-                    <DarkModeToggle />
                     <Profile />
                     <ActionIcon
                         component="a"
@@ -109,9 +103,7 @@ const AppHeader = () => {
 
                     <Divider my="sm" />
 
-                    <Group my="sm">
-                        <LanguageSwitch />
-                        <DarkModeToggle />
+                    <Group justify="center" my="sm">
                         <ActionIcon
                             component="a"
                             href={GITHUB_ORG_URL}
