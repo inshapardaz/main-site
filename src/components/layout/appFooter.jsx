@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 // Local Imports
 import Logo from '../logo';
-import LanguageSwitch from './languageSwitch';
-import DarkModeToggle from './darkModeToggle';
 import { IconBrandGithub } from '../icon';
 import { GITHUB_ORG_URL } from '@/config';
 
@@ -19,7 +17,7 @@ const AppFooter = () => {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <Group>
+        <Group gap="xs">
           <Logo showName={false} />
           {t('footer.copyrights')}
         </Group>
@@ -33,10 +31,6 @@ const AppFooter = () => {
           <Anchor href={GITHUB_ORG_URL} target="_blank" rel="noreferrer" c="dimmed">
             <IconBrandGithub size={20} stroke={1.5} />
           </Anchor>
-        </Group>
-        <Group>
-          <LanguageSwitch />
-          <DarkModeToggle />
         </Group>
       </Container>
     </div>

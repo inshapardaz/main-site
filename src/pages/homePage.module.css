@@ -54,7 +54,7 @@
 }
 
 .dotActive {
-  background-color: var(--mantine-color-red-6);
+  background-color: var(--mantine-primary-color-6);
   transform: scale(1.2);
 }
 

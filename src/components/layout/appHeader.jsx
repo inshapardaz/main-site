@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
     Group,
     Divider,
-    Box,
+    Container,
     Burger,
     Drawer,
     ScrollArea,
@@ -34,51 +34,50 @@ const AppHeader = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
 
     return (
-        <Box>
-            <header className={classes.header}>
-                <Group justify="space-between" h="100%" wrap="nowrap">
-                    <Link to="/" className={classes.brand}>
-                        <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
-                        <Text className={classes.brandUr}>{t('brand.ur')}</Text>
+        <header className={classes.header}>
+            <Container size="lg" className={classes.inner}>
+                <Link to="/" className={classes.brand}>
+                    <i className={classes.logo} />
+                    <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
+                    <Text className={classes.brandUr}>{t('brand.ur')}</Text>
+                </Link>
+
+                <Group gap={5} visibleFrom="sm">
+                    <LibrarySwitcher className={classes.link}>
+                        {t('header.libraries')}
+                        <IconChevronDown size={14} className={classes.navChevron} />
+                    </LibrarySwitcher>
+                    <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
+                        {t('header.editor')}
                     </Link>
-
-                    <Group h="100%" gap={0} visibleFrom="sm" className={classes.nav}>
-                        <LibrarySwitcher className={classes.navLink}>
-                            {t('header.libraries')}
-                            <IconChevronDown size={14} className={classes.navChevron} />
-                        </LibrarySwitcher>
-                        <Link to={LIBRARY_EDITOR_URL} className={classes.navLink}>
-                            {t('header.editor')}
-                        </Link>
-                        <Link to="/maktaba" className={classes.navLink}>
-                            {t('header.maktaba')}
-                        </Link>
-                        <Link to={TOOLS_URL} className={classes.navLink}>
-                            {t('header.tools')}
-                        </Link>
-                    </Group>
-
-                    <Group visibleFrom="sm" gap="sm" wrap="nowrap">
-                        <LanguageSwitch />
-                        <DarkModeToggle />
-                        <Profile />
-                        <ActionIcon
-                            component="a"
-                            href={GITHUB_ORG_URL}
-                            target="_blank"
-                            rel="noreferrer"
-                            variant="default"
-                            size="lg"
-                            radius="md"
-                            aria-label="GitHub"
-                        >
-                            <IconBrandGithub size={18} stroke={1.5} />
-                        </ActionIcon>
-                    </Group>
-
-                    <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+                    <Link to="/maktaba" className={classes.link}>
+                        {t('header.maktaba')}
+                    </Link>
+                    <Link to={TOOLS_URL} className={classes.link}>
+                        {t('header.tools')}
+                    </Link>
                 </Group>
-            </header>
+
+                <Group visibleFrom="sm" gap="sm" wrap="nowrap">
+                    <LanguageSwitch />
+                    <DarkModeToggle />
+                    <Profile />
+                    <ActionIcon
+                        component="a"
+                        href={GITHUB_ORG_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        variant="default"
+                        size="lg"
+                        radius="md"
+                        aria-label="GitHub"
+                    >
+                        <IconBrandGithub size={18} stroke={1.5} />
+                    </ActionIcon>
+                </Group>
+
+                <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" size="sm" aria-label="Toggle navigation" />
+            </Container>
 
             <Drawer
                 opened={drawerOpened}
@@ -93,18 +92,18 @@ const AppHeader = () => {
                     <Divider my="sm" />
 
                     <LibrarySwitcher>
-                        <Group className={classes.link}>
+                        <Group className={classes.drawerLink}>
                             {t('header.libraries')}
                             <IconChevronDown size={14} />
                         </Group>
                     </LibrarySwitcher>
-                    <Link to={LIBRARY_EDITOR_URL} className={classes.link}>
+                    <Link to={LIBRARY_EDITOR_URL} className={classes.drawerLink}>
                         {t('header.editor')}
                     </Link>
-                    <Link to="/maktaba" className={classes.link}>
+                    <Link to="/maktaba" className={classes.drawerLink}>
                         {t('header.maktaba')}
                     </Link>
-                    <Link to={TOOLS_URL} className={classes.link}>
+                    <Link to={TOOLS_URL} className={classes.drawerLink}>
                         {t('header.tools')}
                     </Link>
 
@@ -134,7 +133,7 @@ const AppHeader = () => {
                     </Group>
                 </ScrollArea>
             </Drawer>
-        </Box >
+        </header>
     );
 }
 
