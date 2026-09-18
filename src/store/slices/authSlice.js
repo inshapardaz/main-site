@@ -102,9 +102,11 @@ export const loadUser = createAsyncThunk(
 
 
 export const init = createAsyncThunk("auth/init", async (_, { dispatch }) => {
-    if (Cookies.get('refreshToken')) {
-        dispatch(loadUser())
-    }
+    // token/refreshToken are httpOnly cookies -- deliberately invisible to
+    // JS, so there's no way to check for a session client-side before
+    // asking. Always attempt loadUser(); if there's no valid session the
+    // request just 401s and loadUser.rejected handles it.
+    dispatch(loadUser())
 });
 
 export const authSlice = createSlice({
