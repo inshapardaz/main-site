@@ -313,12 +313,9 @@ const en = {
             heading: "Ready to try Maktaba?",
         },
     },
-    legal: {
-        draftNotice: "This page is a working draft. Sections marked [TO CONFIRM] need input from the site owner and a legal review before this policy is considered final.",
-    },
     terms: {
         title: "Terms & Conditions",
-        updated: "Draft — not yet published.",
+        updated: "21 August 2026",
         sections: [
             {
                 heading: "1. Acceptance of terms",
@@ -360,7 +357,7 @@ const en = {
     },
     privacy: {
         title: "Privacy Policy",
-        updated: "Draft — not yet published.",
+        updated: "21 August 2026",
         sections: [
             {
                 heading: "1. Who we are",
