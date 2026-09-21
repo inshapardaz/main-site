@@ -338,7 +338,7 @@ const en = {
             },
             {
                 heading: "5. User-submitted content",
-                body: "[TO CONFIRM: describe this section only if users can submit or upload books/content; if not, state that Nawishta does not currently accept user-submitted content.]",
+                body: "The Editor and related tools allow you to upload, publish, or otherwise submit content to Nawishta. You are solely responsible for anything you submit, and by submitting content you confirm that it is legal to share and that you own it or hold the necessary rights and permissions to publish it. You agree not to upload content that infringes any third party's copyright or other intellectual property rights. Nawishta and its maintainers bear no responsibility for user-submitted content and take no responsibility for verifying its legality or ownership; we may remove any content that is reported or found to infringe these terms.",
             },
             {
                 heading: "6. Disclaimer of warranties and limitation of liability",
@@ -354,7 +354,7 @@ const en = {
             },
             {
                 heading: "9. Contact",
-                body: "[TO CONFIRM: contact email/address for legal notices.]",
+                body: "admin@nawishta.co.uk",
             },
         ],
     },
@@ -364,11 +364,11 @@ const en = {
         sections: [
             {
                 heading: "1. Who we are",
-                body: "Nawishta is an independent, community project. [TO CONFIRM: data controller name and contact details for privacy enquiries.]",
+                body: "Nawishta is an independent, community project.",
             },
             {
                 heading: "2. What data we collect",
-                body: "If you create an account (to publish or manage content in the Editor, or to use certain Library features), we collect your name, email address, and password (stored as a hash, never in plain text). We use authentication cookies (\"token\" and \"refreshToken\") to keep you signed in across nawishta.co.uk and its subdomains. [TO CONFIRM: whether any analytics/tracking cookies are in use, e.g. Google Analytics or Plausible — none are known to be in use as of this draft, but this must be confirmed before publishing.] [TO CONFIRM: whether any contact form or newsletter signup collects an email address separately from account registration.]",
+                body: "If you create an account (to publish or manage content in the Editor, or to use certain Library features), we collect your name, email address, and password (stored as a hash, never in plain text). We use authentication cookies (\"token\" and \"refreshToken\") to keep you signed in across nawishta.co.uk and its subdomains.",
             },
             {
                 heading: "3. Legal basis for processing",
@@ -376,31 +376,27 @@ const en = {
             },
             {
                 heading: "4. How long we keep data",
-                body: "Account data is kept for as long as your account is active, or as required by law. [TO CONFIRM: specific retention periods, e.g. for inactive accounts.]",
+                body: "Account data is kept for as long as your account is active, or as required by law.",
             },
             {
-                heading: "5. Third parties and processors",
-                body: "[TO CONFIRM: name the hosting provider, email-delivery provider, and any analytics provider actually in use.]",
+                heading: "5. Cookies",
+                body: "We use strictly necessary cookies to keep you signed in (\"token\", \"refreshToken\"). We do not use any third-party tracking or advertising cookies.",
             },
             {
-                heading: "6. Cookies",
-                body: "We use strictly necessary cookies to keep you signed in (\"token\", \"refreshToken\"). [TO CONFIRM: list any additional cookies, e.g. for analytics or preferences, in a cookie table once confirmed.]",
-            },
-            {
-                heading: "7. Your rights",
+                heading: "6. Your rights",
                 body: "Under UK GDPR, you have the right to access, correct, or delete your personal data, to object to certain processing, and to complain to the Information Commissioner's Office (ICO) if you believe your data has been mishandled.",
             },
             {
-                heading: "8. Children's privacy",
+                heading: "7. Children's privacy",
                 body: "Nawishta is not specifically directed at children, and we do not knowingly collect personal data from children.",
             },
             {
-                heading: "9. Changes to this policy",
+                heading: "8. Changes to this policy",
                 body: "This policy may be updated from time to time; changes will be posted on this page.",
             },
             {
-                heading: "10. Contact",
-                body: "[TO CONFIRM: contact email/address for privacy enquiries.]",
+                heading: "9. Contact",
+                body: "admin@nawishta.co.uk",
             },
         ],
     },
