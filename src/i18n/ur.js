@@ -14,6 +14,18 @@ const ur = {
         fonts: "فونٹ",
         tools: "اوزار",
     },
+    appearance: {
+        title: "ظاہری شکل",
+        theme: "انداز",
+        themes: {
+            nawishta: "نوشتہ",
+            white: "سفید",
+            black: "سیاہ",
+        },
+        urduFont: "اردو فونٹ",
+        nastaleeq: "نستعلیق",
+        naskh: "نسخ",
+    },
     footer: {
         copyrights: "نوشتہ۔ تمام حقوق محفوظ ہیں",
         terms: "شرائط",

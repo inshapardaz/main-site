@@ -13,3 +13,7 @@
     gap: var(--mantine-spacing-md);
   }
 }
+
+.footer :global(.mantine-Button-root[data-variant='transparent']) {
+  color: var(--ink);
+}

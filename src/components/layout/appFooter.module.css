@@ -1,22 +1,48 @@
 .footer {
-    margin-top: rem(120px);
-    border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  margin-top: rem(120px);
+  background-color: var(--nw-chrome-footer-bg);
+  border-top: rem(3px) solid var(--nw-chrome-rule);
+  color: var(--nw-chrome-fg-soft);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--mantine-spacing-xl);
+  padding-bottom: var(--mantine-spacing-xl);
+
+  @media (max-width: $mantine-breakpoint-xs) {
+    flex-direction: column;
   }
-  
-  .inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--mantine-spacing-xl);
-    padding-bottom: var(--mantine-spacing-xl);
-  
-    @media (max-width: $mantine-breakpoint-xs) {
-      flex-direction: column;
-    }
+}
+
+.inner :global(.mantine-Anchor-root) {
+  color: var(--nw-chrome-fg-soft) !important;
+
+  @mixin hover {
+    color: var(--nw-chrome-highlight) !important;
   }
-  
-  .links {
-    @media (max-width: $mantine-breakpoint-xs) {
-      margin-top: var(--mantine-spacing-md);
-    }
+}
+
+/* Controls on the footer bar */
+.inner :global(.mantine-ActionIcon-root[data-variant='default']),
+.inner :global(.mantine-Button-root[data-variant='transparent']) {
+  --ai-bg: transparent;
+  background: transparent;
+  --ai-color: var(--nw-chrome-fg);
+  --ai-bd: rem(1px) solid var(--nw-chrome-fg-soft);
+  --button-color: var(--nw-chrome-fg);
+  color: var(--nw-chrome-fg);
+}
+
+.links {
+  @media (max-width: $mantine-breakpoint-xs) {
+    margin-top: var(--mantine-spacing-md);
   }
+}
+
+/* Icons on the bar follow the bar's colour, not the page's */
+.footer img[alt='icon'] {
+  filter: var(--nw-chrome-icon-filter);
+}

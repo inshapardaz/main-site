@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../logo';
 import LanguageSwitch from './languageSwitch';
 import DarkModeToggle from './darkModeToggle';
+import ThemeMenu from './themeMenu';
 import { IconBrandGithub } from '../icon';
 import { GITHUB_ORG_URL } from '@/config';
 
@@ -36,6 +37,7 @@ const AppFooter = () => {
         </Group>
         <Group gap="sm">
           <LanguageSwitch />
+          <ThemeMenu />
           <DarkModeToggle />
         </Group>
       </Container>

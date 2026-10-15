@@ -14,6 +14,18 @@ const en = {
         fonts: "Fonts",
         tools: "Tools",
     },
+    appearance: {
+        title: "Appearance",
+        theme: "Theme",
+        themes: {
+            nawishta: "Nawishta",
+            white: "White",
+            black: "Black",
+        },
+        urduFont: "Urdu font",
+        nastaleeq: "Nastaleeq",
+        naskh: "Naskh",
+    },
     footer: {
         copyrights: "Copyrights Nawishta. All rights reserved.",
         terms: "Terms",

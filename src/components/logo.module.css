@@ -1,7 +1,21 @@
 .logo {
-    height: 32px;
-    width: 32px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    display: block;
+    flex-shrink: 0;
+    background: var(--nw-ring-bg);
+    padding: 3px;
+}
+
+.logoInner {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    display: block;
+    background-color: var(--nw-ring-inner);
     background-image: url('@/assets/images/logo.png');
-    background-size: contain;
+    background-size: 70%;
     background-repeat: no-repeat;
+    background-position: center;
 }
