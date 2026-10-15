@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Container, Title } from '@mantine/core';
 
 // Local Imports
+import Logo from '../logo';
 import classes from './authHeader.module.css';
 
 //----------------------------------------------
@@ -16,7 +17,7 @@ const AuthHeader = () => {
         <header className={classes.header}>
             <Container size="lg" className={classes.inner}>
                 <Link to="/" className={classes.brand}>
-                    <i className={classes.logo} />
+                    <Logo />
                     <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
                 </Link>
             </Container>

@@ -1,0 +1,121 @@
+/* Typefaces: Open Sans for the interface (self-hosted through fontsource) and the Urdu stacks.
+   Urdu can be set in Nastaleeq (default) or Naskh from the theme menu; the choice is the
+   data-urdu-font attribute on <html>, set in app.jsx. */
+@import '@fontsource-variable/open-sans';
+@import '@fontsource-variable/noto-nastaliq-urdu';
+
+:root[lang^='ur'][data-urdu-font='nastaleeq'] {
+    --mantine-font-family: 'MehrNastaleeq', 'Mehr Nastaliq Web', 'Noto Nastaliq Urdu Variable', 'Noto Nastaliq Urdu', 'Segoe UI', Tahoma, sans-serif;
+    --mantine-font-family-headings: 'MehrNastaleeq', 'Mehr Nastaliq Web', 'Noto Nastaliq Urdu Variable', 'Noto Nastaliq Urdu', 'Segoe UI', Tahoma, sans-serif;
+}
+
+:root[lang^='ur'][data-urdu-font='naskh'] {
+    --mantine-font-family: 'Segoe UI', Tahoma, 'Noto Naskh Arabic', 'Noto Sans Arabic', sans-serif;
+    --mantine-font-family-headings: 'Segoe UI', Tahoma, 'Noto Naskh Arabic', 'Noto Sans Arabic', sans-serif;
+}
+
+/* Nastaleeq needs far more vertical room than Latin or Naskh text */
+:root[lang^='ur'][data-urdu-font='nastaleeq'] body {
+    line-height: 2;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   Themes. <html data-nw-theme="nawishta|white|black"> (set in app.jsx) picks one. Components use
+   only the semantic variables below:
+     --paper / --paper-deep / --paper-card   page, banded and card surfaces
+     --ink / --ink-soft                      text
+     --nw-line                               hairline borders
+     --nw-chrome-*                           header + footer bar (bg, text, muted text, highlight, rule)
+     --nw-hero-bg                            dark hero bands
+   --------------------------------------------------------------------------------------------- */
+
+/* Nawishta: the paper/spine/gold design (same palette as the library app). */
+:root,
+:root[data-nw-theme='nawishta'] {
+    --ink: #241f17;
+    --ink-soft: #5a5140;
+    --paper: #f3ead8;
+    --paper-deep: #e9ddc2;
+    --paper-card: #fbf6ea;
+    --spine: #163831;
+    --spine-dark: #0f2621;
+    --gold: #b8863a;
+    --gold-soft: #e4c990;
+    --oxblood: #7c2c29;
+    --nw-line: rgba(36, 31, 23, .14);
+
+    --nw-chrome-bg: var(--spine);
+    --nw-chrome-footer-bg: var(--spine-dark);
+    --nw-chrome-fg: #fbf6ea;
+    --nw-chrome-fg-soft: #e9ddc2;
+    --nw-chrome-highlight: var(--gold-soft);
+    --nw-chrome-rule: var(--gold);
+    --nw-hero-bg: linear-gradient(135deg, var(--spine-dark), var(--spine));
+    --nw-chrome-icon-filter: invert(1);
+}
+
+:root[data-nw-theme='nawishta'][data-mantine-color-scheme='dark'] {
+    --ink: #ede6d4;
+    --ink-soft: #c9bea3;
+    --paper: #1b2420;
+    --paper-deep: #202b26;
+    --paper-card: #22302b;
+    --nw-line: rgba(237, 230, 212, .12);
+}
+
+/* White: basic and plain. */
+:root[data-nw-theme='white'] {
+    --ink: #212529;
+    --ink-soft: #495057;
+    --paper: #ffffff;
+    --paper-deep: #f1f3f5;
+    --paper-card: #ffffff;
+    --nw-line: #dee2e6;
+
+    --nw-chrome-bg: #ffffff;
+    --nw-chrome-footer-bg: #f8f9fa;
+    --nw-chrome-fg: #212529;
+    --nw-chrome-fg-soft: #495057;
+    --nw-chrome-highlight: #1c7ed6;
+    --nw-chrome-rule: #dee2e6;
+    --nw-hero-bg: #212529;
+    --nw-chrome-icon-filter: none;
+}
+
+/* Black: basic and plain. */
+:root[data-nw-theme='black'] {
+    --ink: #f1f3f5;
+    --ink-soft: #ced4da;
+    --paper: #000000;
+    --paper-deep: #121212;
+    --paper-card: #0b0b0b;
+    --nw-line: #2b2b2b;
+
+    --nw-chrome-bg: #000000;
+    --nw-chrome-footer-bg: #000000;
+    --nw-chrome-fg: #f1f3f5;
+    --nw-chrome-fg-soft: #adb5bd;
+    --nw-chrome-highlight: #74c0fc;
+    --nw-chrome-rule: #2b2b2b;
+    --nw-hero-bg: #0b0b0b;
+    --nw-chrome-icon-filter: invert(1);
+}
+
+/* Point Mantine's own surfaces at the theme so inputs, modals and the page match it. */
+:root[data-nw-theme] {
+    --mantine-color-body: var(--paper);
+    --mantine-color-text: var(--ink);
+    --mantine-color-dimmed: var(--ink-soft);
+    --mantine-color-default: var(--paper-card);
+    --mantine-color-default-border: var(--nw-line);
+}
+
+body {
+    background-color: var(--paper);
+    color: var(--ink);
+}
+
+/* The icons are black-stroke SVG images, so they are inverted on dark surfaces. */
+:root[data-mantine-color-scheme='dark'] img[alt='icon'] {
+    filter: invert(1);
+}

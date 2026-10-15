@@ -1,7 +1,8 @@
 .header {
-  height: rem(60px);
-  background-color: var(--mantine-color-body);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  height: rem(64px);
+  background-color: var(--nw-chrome-bg);
+  border-bottom: rem(3px) solid var(--nw-chrome-rule);
+  --burger-color: var(--nw-chrome-fg);
 }
 
 .inner {
@@ -14,21 +15,13 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: rem(8px);
+  gap: rem(10px);
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.logo {
-  height: rem(28px);
-  width: rem(28px);
-  background-image: url('@/assets/images/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 .brandEn {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: var(--nw-chrome-fg);
   font-weight: 800;
   letter-spacing: rem(-0.3px);
 }
@@ -42,17 +35,34 @@
   border-radius: var(--mantine-radius-sm);
   cursor: pointer;
   text-decoration: none;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  color: var(--nw-chrome-fg-soft);
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
+  transition: color 120ms ease;
 
   @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    color: var(--nw-chrome-highlight);
   }
 }
 
 .navChevron {
   opacity: 0.6;
+}
+
+/* Buttons sitting directly on the header bar need the bar's text colour whatever the theme. */
+.header :global(.mantine-ActionIcon-root),
+.header :global(.mantine-UnstyledButton-root),
+.header :global(.mantine-Button-root[data-variant='subtle']) {
+  --ai-color: var(--nw-chrome-fg);
+  --ai-bd: rem(1px) solid var(--nw-line);
+  --button-color: var(--nw-chrome-fg);
+  color: var(--nw-chrome-fg);
+}
+
+.header :global(.mantine-ActionIcon-root[data-variant='default']) {
+  --ai-bg: transparent;
+  background: transparent;
+  --ai-bd: rem(1px) solid var(--nw-chrome-fg-soft);
 }
 
 .drawerLink {
@@ -64,11 +74,16 @@
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
   text-decoration: none;
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: var(--ink);
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
 
   @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    background-color: var(--paper-deep);
   }
+}
+
+/* Icons on the bar follow the bar's colour, not the page's */
+.header img[alt='icon'] {
+  filter: var(--nw-chrome-icon-filter);
 }

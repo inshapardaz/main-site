@@ -1,5 +1,5 @@
 .card {
-    background-color: var(--mantine-color-body);
+    background-color: var(--paper-card);
   }
   
   .avatar {

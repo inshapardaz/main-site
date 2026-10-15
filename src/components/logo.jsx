@@ -13,7 +13,7 @@ const Logo = ({ showName = false, title }) => {
     const { t } = useTranslation()
     if (showName) {
         return (
-            <Group>
+            <Group gap="xs">
                 <i className={classes.logo} />
                 <Title order={4} visibleFrom="sm">{title ? title : t('app')}</Title>
             </Group>);

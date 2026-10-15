@@ -1,7 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// 3rd party imports
+// Local imports
+import { THEMES, DEFAULT_THEME } from "@/theme";
 //----------------------------------------
+
+// Appearance choices live in local storage. It can throw (private mode, blocked site data), so
+// every access is guarded and the defaults apply.
+const readSetting = (key) => {
+    try {
+        return window.localStorage.getItem(key);
+    } catch {
+        return null;
+    }
+};
+const writeSetting = (key, value) => {
+    try {
+        window.localStorage.setItem(key, value);
+    } catch {
+        // ignore: remembering the choice is a convenience only
+    }
+};
+
+export const URDU_FONTS = ['nastaleeq', 'naskh'];
+const storedUrduFont = readSetting('urduFont');
+const storedTheme = readSetting('uiTheme');
+const initialTheme = THEMES.includes(storedTheme) ? storedTheme : DEFAULT_THEME;
+// Set before first render so the page never flashes the wrong palette.
+document.documentElement.setAttribute('data-nw-theme', initialTheme);
 
 const detectedLanguage = window.localStorage.i18nextLng ?? "ur";
 
@@ -33,6 +58,8 @@ export const uiSlice = createSlice({
     name: "ui",
     initialState: {
         mode: window.localStorage.uiMode ?? "light",
+        theme: initialTheme,
+        urduFont: URDU_FONTS.includes(storedUrduFont) ? storedUrduFont : 'nastaleeq',
         locale: detectedLanguage,
     },
     reducers: {
@@ -53,8 +80,21 @@ export const uiSlice = createSlice({
                 document.querySelector("body").setAttribute("dir", lang.dir);
             }
         },
+        setTheme: (state, action) => {
+            if (!THEMES.includes(action.payload)) return;
+            state.theme = action.payload;
+            writeSetting('uiTheme', action.payload);
+            document.documentElement.setAttribute('data-nw-theme', action.payload);
+        },
+        setUrduFont: (state, action) => {
+            if (!URDU_FONTS.includes(action.payload)) return;
+            state.urduFont = action.payload;
+            writeSetting('urduFont', action.payload);
+        },
     },
 });
 
 export const selectedLanguage = (state) => languages[state.ui.locale];
-export const { toggleUiMode, setLocale, setUiMode } = uiSlice.actions;
+export const selectedTheme = (state) => state.ui.theme;
+export const selectedUrduFont = (state) => state.ui.urduFont;
+export const { toggleUiMode, setLocale, setUiMode, setTheme, setUrduFont } = uiSlice.actions;

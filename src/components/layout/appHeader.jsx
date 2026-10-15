@@ -20,6 +20,7 @@ import { useDisclosure } from '@mantine/hooks';
 import classes from './appHeader.module.css';
 
 import Profile from './profile';
+import Logo from '../logo';
 import { IconChevronDown, IconBrandGithub } from '../icon';
 import LibrarySwitcher from '@/components/libraries/librarySwitcher';
 import { LIBRARY_EDITOR_URL, TOOLS_URL, GITHUB_ORG_URL } from "@/config";
@@ -34,7 +35,7 @@ const AppHeader = () => {
         <header className={classes.header}>
             <Container size="lg" className={classes.inner}>
                 <Link to="/" className={classes.brand}>
-                    <i className={classes.logo} />
+                    <Logo />
                     <Title order={4} className={classes.brandEn}>{t('brand.en')}</Title>
                 </Link>
 
@@ -70,7 +71,7 @@ const AppHeader = () => {
                     </ActionIcon>
                 </Group>
 
-                <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" size="sm" aria-label="Toggle navigation" />
+                <Burger color="var(--nw-chrome-fg)" opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" size="sm" aria-label="Toggle navigation" />
             </Container>
 
             <Drawer

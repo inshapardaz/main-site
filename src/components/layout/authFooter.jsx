@@ -7,6 +7,7 @@ import { Anchor, Container, Group } from '@mantine/core';
 // Local Imports
 import LanguageSwitch from './languageSwitch';
 import DarkModeToggle from './darkModeToggle';
+import ThemeMenu from './themeMenu';
 import classes from './authFooter.module.css';
 
 //----------------------------------------------
@@ -27,6 +28,7 @@ const AuthFooter = () => {
                 </Group>
                 <Group gap="sm">
                     <LanguageSwitch />
+                    <ThemeMenu />
                     <DarkModeToggle />
                 </Group>
             </Container>
