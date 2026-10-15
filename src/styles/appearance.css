@@ -27,7 +27,6 @@
      --nw-line                               hairline borders
      --nw-chrome-*                           header + footer bar (bg, text, muted text, highlight, rule)
      --nw-hero-bg                            dark hero bands
-     --nw-ring-*                             the logo's brand-mark frame
    --------------------------------------------------------------------------------------------- */
 
 /* Nawishta: the paper/spine/gold design (same palette as the library app). */
@@ -52,8 +51,6 @@
     --nw-chrome-highlight: var(--gold-soft);
     --nw-chrome-rule: var(--gold);
     --nw-hero-bg: linear-gradient(135deg, var(--spine-dark), var(--spine));
-    --nw-ring-bg: conic-gradient(from 45deg, var(--gold), #e0b567, var(--oxblood), var(--gold));
-    --nw-ring-inner: var(--spine-dark);
     --nw-chrome-icon-filter: invert(1);
 }
 
@@ -82,8 +79,6 @@
     --nw-chrome-highlight: #1c7ed6;
     --nw-chrome-rule: #dee2e6;
     --nw-hero-bg: #212529;
-    --nw-ring-bg: #dee2e6;
-    --nw-ring-inner: #212529;
     --nw-chrome-icon-filter: none;
 }
 
@@ -103,8 +98,6 @@
     --nw-chrome-highlight: #74c0fc;
     --nw-chrome-rule: #2b2b2b;
     --nw-hero-bg: #0b0b0b;
-    --nw-ring-bg: #3a3a3a;
-    --nw-ring-inner: #000000;
     --nw-chrome-icon-filter: invert(1);
 }
 
